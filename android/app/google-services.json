@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1083464498669",
+    "project_id": "car-detection-ml",
+    "storage_bucket": "car-detection-ml.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083464498669:android:e6665ad33cb93125a77be4",
+        "android_client_info": {
+          "package_name": "com.example.carapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083464498669-2daokc8pchcbk4g6s428ughjaic4lb3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUhc5RNdmC9naNyGnTGMyoLM5aefx0WBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083464498669-2daokc8pchcbk4g6s428ughjaic4lb3q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1083464498669-jrld4sghl3dqbmcqstmci8e4u1hfvloh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.carapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
