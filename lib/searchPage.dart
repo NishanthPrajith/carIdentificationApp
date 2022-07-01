@@ -36,14 +36,15 @@ class _SearchPageState extends State<SearchPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               border: Border.all(
-                color: const Color(0xffC5C5C5),
+                color: const Color(0xffcecece),
                 width: 1.5,
               ),
             ),
             child: Row(
               children: [
                 const Icon(
-                  Icons.search
+                  Icons.search,
+                  color: Color(0xffa0a0a0),
                 ),
                 const SizedBox(
                   width: 10,
@@ -77,7 +78,8 @@ class _SearchPageState extends State<SearchPage> {
                       });
                     },
                     child: const Icon(
-                      Icons.close
+                      Icons.close,
+                      color: Color(0xffa0a0a0),
                     ),
                   ),
               ],
@@ -125,7 +127,7 @@ class _SearchPageState extends State<SearchPage> {
                   child: Container(
                     height: 75,
                     decoration: const BoxDecoration(
-                      color: Color(0xffEAEAEA),
+                      color: Color(0xffe5e5e5),
                       borderRadius: BorderRadius.all(Radius.circular(20))
                     ),
                     margin: const EdgeInsets.fromLTRB(25, 0, 25, 23),

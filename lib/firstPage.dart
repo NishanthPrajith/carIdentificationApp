@@ -94,7 +94,7 @@ class _FirstPageState extends State<FirstPage> {
                                 _image = File(pictureFile);
 
                                 img.Image imageInput = img.decodeImage(_image!.readAsBytesSync())!;
-                                prediction = _classifier.predict(imageInput);
+                                _classifier.predict(imageInput);
                               });
                             },
                             child: Stack(

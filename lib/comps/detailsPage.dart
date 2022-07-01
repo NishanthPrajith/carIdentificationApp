@@ -18,7 +18,7 @@ class DetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           decoration: const BoxDecoration(
-            color: Colors.black
+            color: Color(0xfff0f0f0)
           ),
           child: Column(
             children: [
@@ -35,8 +35,9 @@ class DetailsPage extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         child: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.grey,
+                          Icons.keyboard_arrow_left,
+                          color: Colors.black,
+                          size: 32,
                         ),
                       )
                     ),
@@ -45,11 +46,12 @@ class DetailsPage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "SEARCH RESULT",
+                          "Search Result",
                           style: TextStyle(
                             fontFamily: 'sfPro',
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16
                           ),
                         ),
                       )
@@ -57,19 +59,20 @@ class DetailsPage extends StatelessWidget {
                     const Expanded(
                       flex: 2,
                       child: Icon(
-                        Icons.arrow_back,
+                        Icons.keyboard_arrow_left,
+                        color: Color(0xfff0f0f0),
                       )
                     )
                   ],
                 )
               ),
               Expanded(
-                flex: 9,
+                flex: 10,
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xfff0f0f0),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),
@@ -185,18 +188,6 @@ class DetailsPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Text(
-                                    "Transmission Type",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'sfPro',
-                                      color: const Color(0xffA0A0A0),
-                                      fontSize: 13
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 12,
-                                  ),
-                                  Text(
                                     "6-speed shiftable automatic",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -204,6 +195,18 @@ class DetailsPage extends StatelessWidget {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 24
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    "Transmission Type",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'sfPro',
+                                      color: const Color(0xffA0A0A0),
+                                      fontSize: 13
                                     ),
                                   ),
                                 ],

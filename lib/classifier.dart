@@ -1,6 +1,10 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:image/image.dart';
@@ -86,17 +90,8 @@ class Classifier {
         .process(_inputImage);
   }
 
-  Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load('assets/$path');
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    return file;
-  }
-
   Future<String> predict(img.Image image) async {
-    final Uint8List inputImg = (await rootBundle.load("assets/01126.jpg")).buffer.asUint8List();
+    final Uint8List inputImg = (await rootBundle.load("assets/car_img.jpeg")).buffer.asUint8List();
     final decoder = JpegDecoder();
     img.Image imageInput = img.decodeImage(inputImg)!;
     _inputImage = TensorImage(_inputType);
@@ -107,25 +102,29 @@ class Classifier {
 
     print(_inputImage.getHeight());
 
-    for(int y = 0; y < 300; y++) {
-      for(int x = 0; x < 300; x++) {
-        int red = decodedBytes[y*300*3 + x*3];
-        int green = decodedBytes[y*300*3 + x*3 + 1];
-        int blue = decodedBytes[y*300*3 + x*3 + 2];
-        print(red);
-        print(green);
-        print(blue);
-        break;
+    print(decodedBytes.length);
+
+    var convertedBytes = Float32List(1 * 300 * 300 * 3);
+    var buffer = Float32List.view(convertedBytes.buffer);
+    int pixelIndex = 0;
+    for (var i = 0; i < 300; i++) {
+      for (var j = 0; j < 300; j++) {
+        var pixel = _inputImage.image.getPixel(j, i);
+
+        double red = img.getRed(pixel) / 255.0;
+        double green = img.getGreen(pixel) / 255.0;
+        double blue = img.getBlue(pixel) / 255.0;
+
+        buffer[pixelIndex++] = (red - 0.485) / 0.229;
+        buffer[pixelIndex++] = (green - 0.456) / 0.224;
+        buffer[pixelIndex++] = (blue  - 0.406) / 0.225;
       }
-      break;
     }
 
-
-
-    interpreter.run(_inputImage.buffer, _outputBuffer.getBuffer());
+    interpreter.run(convertedBytes.buffer, _outputBuffer.getBuffer());
 
     Map<String, double> labeledProb = TensorLabel.fromList(
-            labels, _probabilityProcessor.process(_outputBuffer))
+            labels, _outputBuffer)
         .getMapWithFloatValue();
 
     var result = labeledProb.entries.toList()

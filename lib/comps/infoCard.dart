@@ -20,7 +20,7 @@ class _InfoCardState extends State<InfoCard> {
     return SafeArea(
       child: Container(
         decoration: BoxDecoration(
-          color: widget.fullscreen ? Colors.black : Colors.transparent
+          color: widget.fullscreen ? Color(0xfff0f0f0) : Colors.transparent
         ),
         child: Column(
           children: [
@@ -58,7 +58,7 @@ class _InfoCardState extends State<InfoCard> {
               child: Container(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xfff0f0f0),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
@@ -200,18 +200,6 @@ class _InfoCardState extends State<InfoCard> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
                                 Text(
-                                  "Transmission Type",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'sfPro',
-                                    color: Color(0xffA0A0A0),
-                                    fontSize: 13
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
                                   "6-speed shiftable automatic",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -219,6 +207,18 @@ class _InfoCardState extends State<InfoCard> {
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 24
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 12,
+                                ),
+                                Text(
+                                  "Transmission Type",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'sfPro',
+                                    color: Color(0xffA0A0A0),
+                                    fontSize: 13
                                   ),
                                 ),
                               ],
@@ -251,7 +251,7 @@ class InformationDetail extends StatelessWidget {
   final String secondCategory;
   final String secondValue;
 
-  Color infoColor = const Color(0xfff2f2f2);
+  Color infoColor = const Color(0xffffffff);
 
   @override
   Widget build(BuildContext context) {
@@ -272,24 +272,24 @@ class InformationDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    firstCategory,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: 'sfPro',
-                      color: Color(0xff242424),
-                      fontSize: 13
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
                     firstValue,
                     style: const TextStyle(
                       fontFamily: 'sfPro',
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 24
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    firstCategory,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'sfPro',
+                      color: Color(0xff242424),
+                      fontSize: 13
                     ),
                   ),
                 ],
@@ -312,24 +312,24 @@ class InformationDetail extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    secondCategory,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: 'sfPro',
-                      color: Color(0xff242424),
-                      fontSize: 13
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Text(
                     secondValue,
                     style: const TextStyle(
                       fontFamily: 'sfPro',
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 24
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    secondCategory,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'sfPro',
+                      color: Color(0xff242424),
+                      fontSize: 13
                     ),
                   ),
                 ],

@@ -78,11 +78,11 @@ flutter:
   fonts:
     - family : sfPro
       fonts :
-        - asset : assets/fonts/SFPRODISPLAYBOLD.otf
+        - asset : assets/fonts/UberMoveBold.otf
           weight : 700
-        - asset : assets/fonts/SFPRODISPLAYMEDIUM.otf
+        - asset : assets/fonts/UberMoveMedium.otf
           weight : 500
-        - asset : assets/fonts/SFPRODISPLAYREGULAR.otf
+        - asset : assets/fonts/UberMoveTextRegular.otf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
