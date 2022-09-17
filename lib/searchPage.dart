@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+
+import 'assets/constants.dart' as constants;
 
 import 'comps/detailsPage.dart';
 
@@ -11,15 +12,14 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-
   String _searchQuery = "";
 
   final fieldText = TextEditingController();
-  
+  final List<String> modelNames = constants.modelNames;
+
   void clearText() {
     fieldText.clear();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _SearchPageState extends State<SearchPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox (
+          const SizedBox(
             height: 60,
           ),
           Container(
@@ -87,86 +87,78 @@ class _SearchPageState extends State<SearchPage> {
           ),
           const Expanded(
             flex: 2,
-            child: SizedBox (
-              height:0,
+            child: SizedBox(
+              height: 0,
             ),
           ),
           Expanded(
             flex: 1,
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              child: const Text(
-                "Search Results..",
-                style: TextStyle(
-                  fontFamily: 'sfPro',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                )
-              )
-            ),
+                margin: const EdgeInsets.symmetric(horizontal: 25),
+                child: const Text("Search Results..",
+                    style: TextStyle(
+                      fontFamily: 'sfPro',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ))),
           ),
           const Expanded(
             flex: 1,
-            child: SizedBox (
-              height:0,
+            child: SizedBox(
+              height: 0,
             ),
           ),
           Expanded(
-            flex: 20,
-            child: ListView.builder(
-              physics: BouncingScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (BuildContext context,int index){
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const DetailsPage(info: {"hello": "1", "world": 2})),
+              flex: 20,
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: modelNames.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailsPage(info: modelNames[index])),
+                        );
+                      },
+                      child: Container(
+                          height: 75,
+                          decoration: const BoxDecoration(
+                              color: Color(0xffe5e5e5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          margin: const EdgeInsets.fromLTRB(25, 0, 25, 23),
+                          padding: const EdgeInsets.fromLTRB(0, 8, 15, 0),
+                          child: Stack(
+                            alignment: Alignment.bottomLeft,
+                            children: [
+                              Container(
+                                  alignment: Alignment.bottomLeft,
+                                  padding: const EdgeInsets.only(top: 8),
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Image.network(
+                                    "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-McLaren-650S-Sprint-White-Car-PNG-Image-500x190.png",
+                                    fit: BoxFit.fitHeight,
+                                  )),
+                              Container(
+                                  alignment: Alignment.topRight,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(modelNames[index],
+                                      style: const TextStyle(
+                                        fontFamily: 'sfPro',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      )))
+                            ],
+                          )),
                     );
-                  },
-                  child: Container(
-                    height: 75,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffe5e5e5),
-                      borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                    margin: const EdgeInsets.fromLTRB(25, 0, 25, 23),
-                    padding: const EdgeInsets.fromLTRB(0, 8, 15, 0),
-                    child: Stack(
-                      alignment: Alignment.bottomLeft,
-                      children: [
-                        Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.only(top: 8),
-                          width: MediaQuery.of(context).size.width,
-                          child: Image.network(
-                            "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-McLaren-650S-Sprint-White-Car-PNG-Image-500x190.png",
-                            fit: BoxFit.fitHeight,
-                          )
-                        ),
-                        Container(
-                          alignment: Alignment.topRight,
-                          width: MediaQuery.of(context).size.width,
-                          child: const Text(
-                            "McLaren 650S Sprint",
-                            style: TextStyle(
-                              fontFamily: 'sfPro',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            )
-                          )
-                        )
-                      ],
-                    )
-                  ),
-                );
-              }
-            )
-          ),
+                  })),
           const Expanded(
             flex: 1,
-            child: SizedBox (
-              height:0,
+            child: SizedBox(
+              height: 0,
             ),
           ),
         ],
@@ -174,4 +166,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
