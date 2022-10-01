@@ -1,8 +1,12 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'comps/carListItem.dart';
 
-import 'assets/constants.dart' as constants;
-
-import 'comps/detailsPage.dart';
+class CarInfo {
+  CarInfo({required this.name});
+  final String name;
+}
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -15,7 +19,11 @@ class _SearchPageState extends State<SearchPage> {
   String _searchQuery = "";
 
   final fieldText = TextEditingController();
-  final List<String> modelNames = constants.modelNames;
+
+  final Stream<QuerySnapshot> _carsStream = FirebaseFirestore.instance
+      .collection('CarData')
+      .orderBy('Make')
+      .snapshots();
 
   void clearText() {
     fieldText.clear();
@@ -95,7 +103,7 @@ class _SearchPageState extends State<SearchPage> {
             flex: 1,
             child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 25),
-                child: const Text("Search Results..",
+                child: const Text('Search results',
                     style: TextStyle(
                       fontFamily: 'sfPro',
                       fontSize: 15,
@@ -110,51 +118,38 @@ class _SearchPageState extends State<SearchPage> {
           ),
           Expanded(
               flex: 20,
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: modelNames.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  DetailsPage(info: modelNames[index])),
-                        );
-                      },
-                      child: Container(
-                          height: 75,
-                          decoration: const BoxDecoration(
-                              color: Color(0xffe5e5e5),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          margin: const EdgeInsets.fromLTRB(25, 0, 25, 23),
-                          padding: const EdgeInsets.fromLTRB(0, 8, 15, 0),
-                          child: Stack(
-                            alignment: Alignment.bottomLeft,
-                            children: [
-                              Container(
-                                  alignment: Alignment.bottomLeft,
-                                  padding: const EdgeInsets.only(top: 8),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Image.network(
-                                    "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-McLaren-650S-Sprint-White-Car-PNG-Image-500x190.png",
-                                    fit: BoxFit.fitHeight,
-                                  )),
-                              Container(
-                                  alignment: Alignment.topRight,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Text(modelNames[index],
-                                      style: const TextStyle(
-                                        fontFamily: 'sfPro',
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      )))
-                            ],
-                          )),
-                    );
-                  })),
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _carsStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
+
+                  return ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return CarListItem(
+                        make: data['Make'],
+                        model: data['Model'],
+                        engineLocation: data['Engine Location'],
+                        engineType: data['Engine Type'],
+                        engineMaxPower: data['Engine Max Power'],
+                        drive: data['Drive'],
+                        engineFuelType: data['Engine Fuel Type'],
+                        fuelCapacity: data['Fuel Capacity'],
+                        transmissionType: data['Transmission Type'],
+                      );
+                    }).toList(),
+                  );
+                },
+              )),
           const Expanded(
             flex: 1,
             child: SizedBox(

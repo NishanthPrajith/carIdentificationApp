@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'infoCard.dart';
+import 'carListItem.dart';
 
 class DetailsPage extends StatelessWidget {
-  final info;
+  final String info;
+  final CarListItem carInfo;
 
-  const DetailsPage({super.key, required this.info});
+  const DetailsPage({super.key, required this.info, required this.carInfo});
 
   final Color infoColor = const Color(0xff242424);
 
@@ -113,7 +115,7 @@ class DetailsPage extends StatelessWidget {
                     ),
                     const Categories(),
                     const Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                      "placeholder text",
                       style: TextStyle(
                         fontFamily: 'sfPro',
                         color: Color(0xff242424),
@@ -149,25 +151,25 @@ class DetailsPage extends StatelessWidget {
                     ),
                     InformationDetail(
                         firstCategory: "Engine Location",
-                        firstValue: "Front",
+                        firstValue: carInfo.engineLocation,
                         secondCategory: "Engine Type",
-                        secondValue: "V6"),
+                        secondValue: carInfo.engineType),
                     const SizedBox(
                       height: 15,
                     ),
                     InformationDetail(
                         firstCategory: "Engine Max Power",
-                        firstValue: "300 HP",
+                        firstValue: carInfo.engineMaxPower,
                         secondCategory: "Drive",
-                        secondValue: "AWD"),
+                        secondValue: carInfo.drive),
                     const SizedBox(
                       height: 15,
                     ),
                     InformationDetail(
                         firstCategory: "Engine Fuel Type",
-                        firstValue: "Gasoline",
+                        firstValue: carInfo.engineFuelType,
                         secondCategory: "Fuel Capacity",
-                        secondValue: "73 L"),
+                        secondValue: carInfo.fuelCapacity),
                     const SizedBox(
                       height: 15,
                     ),
@@ -185,25 +187,25 @@ class DetailsPage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
+                                  children: [
                                     Text(
-                                      "6-speed shiftable automatic",
+                                      carInfo.transmissionType,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontFamily: 'sfPro',
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 24),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 12,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Transmission Type",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: 'sfPro',
-                                          color: const Color(0xffA0A0A0),
+                                          color: Color(0xffA0A0A0),
                                           fontSize: 13),
                                     ),
                                   ],
