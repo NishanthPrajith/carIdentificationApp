@@ -29,6 +29,8 @@ class _SearchPageState extends State<SearchPage> {
     fieldText.clear();
   }
 
+  String valExists(String? value) => value ?? 'None';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -136,15 +138,15 @@ class _SearchPageState extends State<SearchPage> {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
                       return CarListItem(
-                        make: data['Make'],
-                        model: data['Model'],
-                        engineLocation: data['Engine Location'],
-                        engineType: data['Engine Type'],
-                        engineMaxPower: data['Engine Max Power'],
-                        drive: data['Drive'],
-                        engineFuelType: data['Engine Fuel Type'],
-                        fuelCapacity: data['Fuel Capacity'],
-                        transmissionType: data['Transmission Type'],
+                        make: valExists(data['Make']),
+                        model: valExists(data['Model']),
+                        engineLocation: valExists(data['Engine Location']),
+                        engineType: valExists(data['Engine Type']),
+                        engineMaxPower: valExists(data['Engine Max Power']),
+                        drive: valExists(data['Drive']),
+                        engineFuelType: valExists(data['Engine Fuel Type']),
+                        fuelCapacity: valExists(data['Fuel Capacity']),
+                        transmissionType: valExists(data['Transmission Type']),
                       );
                     }).toList(),
                   );
