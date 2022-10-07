@@ -3,6 +3,8 @@ import 'package:carapp/classifier.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
+import 'testClassifier.dart';
+
 import 'package:camera/camera.dart';
 
 class FirstPage extends StatefulWidget {
@@ -25,7 +27,7 @@ class _FirstPageState extends State<FirstPage> {
   late CameraController controller;
   String pictureFile = "";
 
-  final Classifier _classifier = Classifier();
+  final Test _classifier = Test();
 
   late List _results;
 
@@ -96,10 +98,7 @@ class _FirstPageState extends State<FirstPage> {
                                     setState(() {
                                       pictureFile = a.path;
                                       _image = File(pictureFile);
-
-                                      img.Image imageInput = img.decodeImage(
-                                          _image!.readAsBytesSync())!;
-                                      _classifier.predict(imageInput);
+                                      _classifier.predict(_image);
                                     });
                                   },
                                   child: Stack(
