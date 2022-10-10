@@ -317,6 +317,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       topRight: Radius.circular(edges),
                     ),
                   ),
+                  // can replace the InfoCard with the detailsPage widget by construting a CarListItem
                   child: InfoCard(
                       fullscreen: _fullscreen,
                       maxHeight: done,
