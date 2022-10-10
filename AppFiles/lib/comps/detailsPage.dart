@@ -13,6 +13,8 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const alreadySaved = false;
+
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -53,8 +55,10 @@ class DetailsPage extends StatelessWidget {
                     const Expanded(
                         flex: 2,
                         child: Icon(
-                          Icons.keyboard_arrow_left,
-                          color: Color(0xfff0f0f0),
+                          alreadySaved ? Icons.favorite : Icons.favorite_border,
+                          color: alreadySaved ? Colors.red : Colors.grey,
+                          semanticLabel:
+                              alreadySaved ? 'Remove from saved' : 'Save',
                         ))
                   ],
                 )),
