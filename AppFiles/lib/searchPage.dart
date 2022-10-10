@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'comps/carListItem.dart';
 
-class CarInfo {
-  CarInfo({required this.name});
-  final String name;
-}
-
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
 
@@ -30,6 +25,18 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   String valExists(String? value) => value ?? 'None';
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getResultStream(String query) {
+    return (query != "")
+        ? FirebaseFirestore.instance
+            .collection('CarData')
+            .where("Search", arrayContains: query)
+            .snapshots()
+        : FirebaseFirestore.instance
+            .collection("CarData")
+            .orderBy('Make')
+            .snapshots();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +76,10 @@ class _SearchPageState extends State<SearchPage> {
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration.collapsed(
                       border: InputBorder.none,
-                      hintText: 'Search',
+                      hintText: 'Search by make or model',
                       hintStyle: TextStyle(
                         fontFamily: 'sfPro',
+                        fontSize: 14,
                         decoration: TextDecoration.none,
                         color: Color(0xff464646),
                       ),
@@ -96,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           const Expanded(
-            flex: 2,
+            flex: 1,
             child: SizedBox(
               height: 0,
             ),
@@ -104,7 +112,7 @@ class _SearchPageState extends State<SearchPage> {
           Expanded(
             flex: 1,
             child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 25),
+                margin: const EdgeInsets.symmetric(horizontal: 30),
                 child: const Text('Search results',
                     style: TextStyle(
                       fontFamily: 'sfPro',
@@ -121,7 +129,7 @@ class _SearchPageState extends State<SearchPage> {
           Expanded(
               flex: 20,
               child: StreamBuilder<QuerySnapshot>(
-                stream: _carsStream,
+                stream: getResultStream(_searchQuery),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
@@ -147,6 +155,8 @@ class _SearchPageState extends State<SearchPage> {
                         engineFuelType: valExists(data['Engine Fuel Type']),
                         fuelCapacity: valExists(data['Fuel Capacity']),
                         transmissionType: valExists(data['Transmission Type']),
+                        image: valExists(data['Image']),
+                        logo: valExists(data['Logo']),
                       );
                     }).toList(),
                   );

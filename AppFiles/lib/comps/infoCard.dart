@@ -138,7 +138,6 @@ class _InfoCardState extends State<InfoCard> {
                     const SizedBox(
                       height: 32,
                     ),
-                    const Categories(),
                     const Text(
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                       style: TextStyle(
@@ -324,83 +323,84 @@ class InformationDetail extends StatelessWidget {
   }
 }
 
-class Categories extends StatelessWidget {
-  const Categories({Key? key}) : super(key: key);
+// Not used anymore, could be deleted
+// class Categories extends StatelessWidget {
+//   const Categories({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width - 40,
-          height: 1.5,
-          margin: const EdgeInsets.only(bottom: 20, top: 15),
-          color: const Color(0xffE1E1E1),
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    "Production",
-                    style: TextStyle(
-                      fontFamily: 'sfPro',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "2018-2022",
-                    style: TextStyle(
-                      fontFamily: 'sfPro',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    "Class",
-                    style: TextStyle(
-                      fontFamily: 'sfPro',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "Sportcars",
-                    style: TextStyle(
-                      fontFamily: 'sfPro',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-        Container(
-            width: MediaQuery.of(context).size.width - 40,
-            height: 1.5,
-            margin: const EdgeInsets.only(top: 20, bottom: 40),
-            color: const Color(0xffE1E1E1)),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: <Widget>[
+//         Container(
+//           width: MediaQuery.of(context).size.width - 40,
+//           height: 1.5,
+//           margin: const EdgeInsets.only(bottom: 20, top: 15),
+//           color: const Color(0xffE1E1E1),
+//         ),
+//         Row(
+//           children: <Widget>[
+//             Expanded(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: const <Widget>[
+//                   Text(
+//                     "Production",
+//                     style: TextStyle(
+//                       fontFamily: 'sfPro',
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.w300,
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 12,
+//                   ),
+//                   Text(
+//                     "2018-2022",
+//                     style: TextStyle(
+//                       fontFamily: 'sfPro',
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.w600,
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//             Expanded(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: const <Widget>[
+//                   Text(
+//                     "Class",
+//                     style: TextStyle(
+//                       fontFamily: 'sfPro',
+//                       fontSize: 16,
+//                       fontWeight: FontWeight.w300,
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 12,
+//                   ),
+//                   Text(
+//                     "Sportcars",
+//                     style: TextStyle(
+//                       fontFamily: 'sfPro',
+//                       fontSize: 20,
+//                       fontWeight: FontWeight.w600,
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//         Container(
+//             width: MediaQuery.of(context).size.width - 40,
+//             height: 1.5,
+//             margin: const EdgeInsets.only(top: 20, bottom: 40),
+//             color: const Color(0xffE1E1E1)),
+//       ],
+//     );
+//   }
+// }

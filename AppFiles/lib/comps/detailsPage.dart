@@ -5,16 +5,14 @@ import 'infoCard.dart';
 import 'carListItem.dart';
 
 class DetailsPage extends StatelessWidget {
-  final String info;
   final CarListItem carInfo;
 
-  const DetailsPage({super.key, required this.info, required this.carInfo});
+  const DetailsPage({super.key, required this.carInfo});
 
   final Color infoColor = const Color(0xff242424);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         body: SafeArea(
       child: Container(
@@ -44,7 +42,7 @@ class DetailsPage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            "Search Result",
+                            "Car Information",
                             style: TextStyle(
                                 fontFamily: 'sfPro',
                                 color: Colors.black,
@@ -80,7 +78,7 @@ class DetailsPage extends StatelessWidget {
                     Container(
                       alignment: Alignment.center,
                       child: Image.network(
-                        "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-Red-Porsche-911-Carrera-Car-PNG-Image-500x255.png",
+                        carInfo.image,
                       ),
                     ),
                     const SizedBox(
@@ -89,14 +87,34 @@ class DetailsPage extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          flex: 9,
-                          child: Text(
-                            info,
-                            style: const TextStyle(
-                              fontFamily: 'sfPro',
-                              fontSize: 45,
-                              fontWeight: FontWeight.w700,
-                            ),
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding:
+                                    const EdgeInsets.only(left: 8, bottom: 8),
+                                child: Text(
+                                  carInfo.make,
+                                  style: const TextStyle(
+                                    color: Color(0xFF424242),
+                                    fontFamily: 'sfPro',
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Text(
+                                    carInfo.model,
+                                    style: const TextStyle(
+                                      fontFamily: 'sfPro',
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )),
+                            ],
                           ),
                         ),
                         Expanded(
@@ -104,28 +122,12 @@ class DetailsPage extends StatelessWidget {
                             child: Container(
                               alignment: Alignment.center,
                               width: double.maxFinite,
-                              child: Image.network(
-                                  scale: 0.5,
-                                  "https://www.autocarbrands.com/wp-content/uploads/2014/04/porsche.png"),
+                              child: Image.network(scale: 0.5, carInfo.logo),
                             )),
                       ],
                     ),
                     const SizedBox(
                       height: 32,
-                    ),
-                    const Categories(),
-                    const Text(
-                      "placeholder text",
-                      style: TextStyle(
-                        fontFamily: 'sfPro',
-                        color: Color(0xff242424),
-                        fontSize: 21,
-                        letterSpacing: 0.2,
-                        height: 1.75,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 48,
                     ),
                     Row(
                       children: const [

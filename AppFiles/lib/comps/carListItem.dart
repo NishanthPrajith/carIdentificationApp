@@ -13,6 +13,8 @@ class CarListItem extends StatelessWidget {
     required this.engineFuelType,
     required this.fuelCapacity,
     required this.transmissionType,
+    required this.image,
+    required this.logo,
   });
 
   final String make;
@@ -24,28 +26,32 @@ class CarListItem extends StatelessWidget {
   final String engineFuelType;
   final String fuelCapacity;
   final String transmissionType;
+  final String image;
+  final String logo;
 
   @override
   Widget build(BuildContext context) {
-    final carName = '$make - $model';
     final carListItem = CarListItem(
-        make: make,
-        model: model,
-        engineLocation: engineLocation,
-        engineType: engineType,
-        engineMaxPower: engineMaxPower,
-        drive: drive,
-        engineFuelType: engineFuelType,
-        fuelCapacity: fuelCapacity,
-        transmissionType: transmissionType);
+      make: make,
+      model: model,
+      engineLocation: engineLocation,
+      engineType: engineType,
+      engineMaxPower: engineMaxPower,
+      drive: drive,
+      engineFuelType: engineFuelType,
+      fuelCapacity: fuelCapacity,
+      transmissionType: transmissionType,
+      image: image,
+      logo: logo,
+    );
 
     return GestureDetector(
       onTap: () {
+        print('tapped!!!!');
         Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => DetailsPage(
-                    info: carName,
                     carInfo: carListItem,
                   )),
         );
@@ -62,21 +68,40 @@ class CarListItem extends StatelessWidget {
             children: [
               Container(
                   alignment: Alignment.bottomLeft,
-                  padding: const EdgeInsets.only(top: 8),
+                  padding: const EdgeInsets.only(left: 8, top: 4, bottom: 4),
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-McLaren-650S-Sprint-White-Car-PNG-Image-500x190.png",
+                    image,
                     fit: BoxFit.fitHeight,
                   )),
               Container(
-                  alignment: Alignment.topRight,
-                  width: MediaQuery.of(context).size.width,
-                  child: Text(carName,
+                alignment: Alignment.topRight,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                      child: Text(
+                        make,
+                        style: const TextStyle(
+                          color: Color(0xFF424242),
+                          fontFamily: 'sfPro',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      model,
                       style: const TextStyle(
                         fontFamily: 'sfPro',
                         fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      )))
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           )),
     );
