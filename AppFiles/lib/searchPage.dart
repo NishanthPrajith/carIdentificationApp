@@ -15,11 +15,6 @@ class _SearchPageState extends State<SearchPage> {
 
   final fieldText = TextEditingController();
 
-  final Stream<QuerySnapshot> _carsStream = FirebaseFirestore.instance
-      .collection('CarData')
-      .orderBy('Make')
-      .snapshots();
-
   void clearText() {
     fieldText.clear();
   }
@@ -27,10 +22,11 @@ class _SearchPageState extends State<SearchPage> {
   String valExists(String? value) => value ?? 'None';
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getResultStream(String query) {
+    // case-insensitive substring search of make or model in cloud firestore
     return (query != "")
         ? FirebaseFirestore.instance
             .collection('CarData')
-            .where("Search", arrayContains: query)
+            .where("Search", arrayContains: query.toLowerCase())
             .snapshots()
         : FirebaseFirestore.instance
             .collection("CarData")
@@ -45,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 60,
+            height: 40,
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 25),
@@ -120,11 +116,8 @@ class _SearchPageState extends State<SearchPage> {
                       fontWeight: FontWeight.w500,
                     ))),
           ),
-          const Expanded(
-            flex: 1,
-            child: SizedBox(
-              height: 0,
-            ),
+          const SizedBox(
+            height: 10,
           ),
           Expanded(
               flex: 20,

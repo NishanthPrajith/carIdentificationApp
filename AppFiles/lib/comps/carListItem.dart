@@ -45,9 +45,10 @@ class CarListItem extends StatelessWidget {
       logo: logo,
     );
 
+    var saved = false;
+
     return GestureDetector(
       onTap: () {
-        print('tapped!!!!');
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -61,27 +62,26 @@ class CarListItem extends StatelessWidget {
           decoration: const BoxDecoration(
               color: Color(0xffe5e5e5),
               borderRadius: BorderRadius.all(Radius.circular(20))),
-          margin: const EdgeInsets.fromLTRB(25, 0, 25, 23),
-          padding: const EdgeInsets.fromLTRB(0, 8, 15, 0),
+          margin: const EdgeInsets.fromLTRB(25, 0, 25, 20),
+          padding: const EdgeInsets.fromLTRB(8, 8, 0, 4),
           child: Stack(
-            alignment: Alignment.bottomLeft,
             children: [
               Container(
-                  alignment: Alignment.bottomLeft,
-                  padding: const EdgeInsets.only(left: 8, top: 4, bottom: 4),
+                  alignment: Alignment.centerLeft,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
                     image,
                     fit: BoxFit.fitHeight,
                   )),
               Container(
-                alignment: Alignment.topRight,
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.only(top: 8, right: 46),
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         make,
                         style: const TextStyle(
@@ -102,6 +102,19 @@ class CarListItem extends StatelessWidget {
                   ],
                 ),
               ),
+              Container(
+                  alignment: Alignment.centerRight,
+                  width: MediaQuery.of(context).size.width,
+                  child: IconButton(
+                    icon: saved
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
+                    color: saved ? Colors.red : Color(0xFF757575),
+                    onPressed: () {
+                      saved = !saved;
+                      print('pressed fav icon');
+                    },
+                  )),
             ],
           )),
     );
