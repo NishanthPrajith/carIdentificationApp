@@ -25,7 +25,7 @@ class Test {
     return file;
   }
 
-  Future<String> predict(File? image) async {
+  Future<String> predict(File image) async {
     // File f = await getImageFileFromAssets();
 
     final mean = [0.485, 0.456, 0.406];
@@ -33,17 +33,12 @@ class Test {
 
     Model imageModel = await PyTorchMobile.loadModel("assets/models/model.pt");
 
-    final Uint8List image1 =
-        (await rootBundle.load("assets/D84.jpg")).buffer.asUint8List();
-    final tempDir = await getTemporaryDirectory();
-    File image = await File('${tempDir.path}/D84.jpg').create();
-    image.writeAsBytesSync(image1);
-
+    
     _imagePrediction = await imageModel!.getImagePrediction(
-        File(image!.path), 224, 224, "assets/labels/label_test.csv");
+        image, 224, 224, "assets/labels/label_test.csv");
 
     print(_imagePrediction);
 
-    return "hello";
+    return _imagePrediction ?? "No prediction";
   }
 }

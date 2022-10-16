@@ -31,9 +31,9 @@ class _FirstPageState extends State<FirstPage> {
 
   late List _results;
 
-  File? _image;
+  late File _image;
 
-  var prediction;
+  String prediction = "";
 
   @override
   void initState() {
@@ -95,10 +95,14 @@ class _FirstPageState extends State<FirstPage> {
                                     final a =
                                         await cameraController.takePicture();
                                     widget.onValueChanged();
+                                    var temp = "";
+                                    pictureFile = a.path;
+                                    _image = File(pictureFile);
+                                    temp = await _classifier.predict(_image);
+                                    
                                     setState(() {
                                       pictureFile = a.path;
-                                      _image = File(pictureFile);
-                                      _classifier.predict(_image);
+                                      prediction = temp;
                                     });
                                   },
                                   child: Stack(
@@ -151,7 +155,7 @@ class _FirstPageState extends State<FirstPage> {
                         child: Image.file(fit: BoxFit.cover, File(pictureFile)),
                       ),
                       Text(
-                        prediction,
+                        prediction ?? "",
                         style: const TextStyle(
                           fontSize: 30,
                           color: Colors.red,
