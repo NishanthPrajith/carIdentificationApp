@@ -1,5 +1,4 @@
 import 'package:image/image.dart' as img;
-import 'package:carapp/classifier.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -15,7 +14,7 @@ class FirstPage extends StatefulWidget {
       required this.active})
       : super(key: key);
 
-  final void Function() onValueChanged;
+  final void Function(dynamic) onValueChanged;
   final List<CameraDescription> cameras;
   final bool active;
 
@@ -38,7 +37,6 @@ class _FirstPageState extends State<FirstPage> {
   @override
   void initState() {
     super.initState();
-    print("redrawing");
     controller = CameraController(widget.cameras[0], ResolutionPreset.max);
     controller.initialize().then((_) {
       if (!mounted) {
@@ -94,7 +92,6 @@ class _FirstPageState extends State<FirstPage> {
                                         .setFlashMode(FlashMode.off);
                                     final a =
                                         await cameraController.takePicture();
-                                    widget.onValueChanged();
                                     var temp = "";
                                     pictureFile = a.path;
                                     _image = File(pictureFile);
@@ -103,6 +100,7 @@ class _FirstPageState extends State<FirstPage> {
                                     setState(() {
                                       pictureFile = a.path;
                                       prediction = temp;
+                                      widget.onValueChanged(temp);
                                     });
                                   },
                                   child: Stack(

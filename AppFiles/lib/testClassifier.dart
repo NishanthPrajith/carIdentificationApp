@@ -13,6 +13,8 @@ import 'package:path_provider/path_provider.dart';
 class Test {
 
   String? _imagePrediction;
+  String? _imageTwo;
+  
   List? _prediction;
   File? _image;
 
@@ -25,19 +27,31 @@ class Test {
     return file;
   }
 
-  Future<String> predict(File image) async {
+  Future<String> predict(File img) async {
     // File f = await getImageFileFromAssets();
 
-    final mean = [0.485, 0.456, 0.406];
-    final std = [0.229, 0.224, 0.225];
+    final meanOurs = [0.485, 0.456, 0.406];
+    final stdOurs = [0.229, 0.224, 0.225];
 
-    Model imageModel = await PyTorchMobile.loadModel("assets/models/model.pt");
+    Model imageModel = await PyTorchMobile.loadModel("assets/models/model_save_actual.pt");
 
-    
+    Model two = await PyTorchMobile.loadModel("assets/models/torch_jit_save.pt");
+
+
+    final Uint8List image1 =
+        (await rootBundle.load("assets/001.jpg")).buffer.asUint8List();
+    final tempDir = await getTemporaryDirectory();
+    File image = await File('${tempDir.path}/001.jpg').create();
+    image.writeAsBytesSync(image1);
+
     _imagePrediction = await imageModel!.getImagePrediction(
-        image, 224, 224, "assets/labels/label_test.csv");
+        img, 300, 300, "assets/labels/labels.csv", mean: meanOurs, std: stdOurs);
+
+    _imageTwo = await two!.getImagePrediction(
+        img, 300, 300, "assets/labels/labels.csv", mean: meanOurs, std: stdOurs);
 
     print(_imagePrediction);
+    _imagePrediction = (_imagePrediction ?? "No") + "," + (_imageTwo ?? "No");
 
     return _imagePrediction ?? "No prediction";
   }

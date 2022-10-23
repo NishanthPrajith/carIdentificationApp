@@ -17,6 +17,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 List<CameraDescription> cameras = [];
 
 Future<void> main() async {
@@ -84,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selection = 1;
   bool _active = false;
   bool _fullscreen = false;
+  String prediction = "";
 
   double edges = 25;
 
@@ -91,11 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
   double height = 0;
   double prevHeight = 0;
 
-  void setActive() {
-    print("Hello");
+  void setActive(predi) {
     setState(() {
       _active = true;
+      prediction = predi;
     });
+  }
+
+  void Function(dynamic)? onPressed(pred) {
+    setActive(pred);
   }
 
   void changeHeight(a) {
@@ -106,6 +113,29 @@ class _MyHomePageState extends State<MyHomePage> {
       _fullscreen = false;
     });
   }
+
+  String getString(s) {
+    String p = s.split(",")[0];
+    if (p.substring(2,3).contains(RegExp(r'[a-zA-Z]'))) {
+      return p.substring(2);
+    }
+    return p;
+  }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getResultStream(String query) {
+    String check = "BMW";
+    if (query == "") {
+      return FirebaseFirestore.instance.collection('CarData').where('Make', isEqualTo: check).get();
+    }
+    String pred = getString(query);
+    String make = pred.split(" ")[0];
+    String model = pred.substring(make.length + 1);
+    return FirebaseFirestore.instance
+      .collection('CarData')
+      .where("Make", isEqualTo: make)
+      .where("Model", isEqualTo: model).get();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             const SearchPage(),
                             // ignore: void_checks
                             FirstPage(
-                                onValueChanged: () => {setActive()},
+                                onValueChanged: onPressed,
                                 cameras: cameras,
                                 active: _active),
                             const AccountPage(),
@@ -287,14 +317,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   height = (MediaQuery.of(context).size.height -
                       details.globalPosition.dy);
                   edges = 25;
-                  print(details.globalPosition.dy);
                   if (height > done && !original) {
                     height = (MediaQuery.of(context).size.height);
                     edges = 0;
                     _fullscreen = true;
                   }
                   if (original && details.globalPosition.dy > 0) {
-                    print("Working");
                     height = done;
                     edges = 25;
                     _fullscreen = false;
@@ -321,6 +349,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: InfoCard(
                       fullscreen: _fullscreen,
                       maxHeight: done,
+                      prediction: prediction,
+                      info: getResultStream(prediction),
                       onValueChanged: () => {changeHeight(done)})),
             )
           ])), // This trailing comma makes auto-formatting nicer for build methods.

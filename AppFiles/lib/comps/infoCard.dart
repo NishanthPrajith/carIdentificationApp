@@ -1,16 +1,22 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class InfoCard extends StatefulWidget {
   const InfoCard(
       {Key? key,
       required this.fullscreen,
       required this.maxHeight,
+      required this.prediction,
+      required this.info,
       required this.onValueChanged})
       : super(key: key);
 
   final bool fullscreen;
   final double maxHeight;
+  final String prediction;
+  final Future<QuerySnapshot<Map<String, dynamic>>> info;
   final void Function() onValueChanged;
 
   @override
@@ -20,232 +26,233 @@ class InfoCard extends StatefulWidget {
 class _InfoCardState extends State<InfoCard> {
   Color infoColor = const Color(0xff242424);
 
+  String getString(s) {
+    String p = s.split(",")[0];
+    if (p.substring(2,3).contains(RegExp(r'[a-zA-Z]'))) {
+      return p.substring(2);
+    }
+    return p;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-            color: widget.fullscreen ? Color(0xfff0f0f0) : Colors.transparent),
-        child: Column(
-          children: [
-            Expanded(
-              flex: widget.fullscreen ? 1 : 2,
-              child: GestureDetector(
-                  onTap: () => {
-                        print("yesss"),
-                        widget.fullscreen ? widget.onValueChanged() : null,
-                      },
-                  onVerticalDragUpdate: (details) => {
-                        print(details.globalPosition.dy),
-                        if (details.globalPosition.dy < widget.maxHeight &&
-                            widget.fullscreen)
-                          {
+    return FutureBuilder(
+      future: widget.info,
+      builder: (context, snapshot) {
+        Map<String, dynamic> information = snapshot.data?.docs[0].data() as Map<String, dynamic>;
+
+        return SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+                color: widget.fullscreen ? Color(0xfff0f0f0) : Colors.transparent),
+            child: Column(
+              children: [
+                Expanded(
+                  flex: widget.fullscreen ? 1 : 2,
+                  child: GestureDetector(
+                      onTap: () => {
                             widget.fullscreen ? widget.onValueChanged() : null,
-                          }
-                      },
-                  child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.only(
-                          bottom: widget.fullscreen ? 0 : 10, top: 0),
-                      padding: const EdgeInsets.all(0),
+                          },
+                      onVerticalDragUpdate: (details) => {
+                            if (details.globalPosition.dy < widget.maxHeight &&
+                                widget.fullscreen)
+                              {
+                                widget.fullscreen ? widget.onValueChanged() : null,
+                              }
+                          },
                       child: Container(
-                        width: 30,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffA8A6A7),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ))),
-            ),
-            Expanded(
-              flex: widget.fullscreen ? 12 : 8,
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                decoration: const BoxDecoration(
-                    color: Color(0xfff0f0f0),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    )),
-                child: ListView(
-                  physics: widget.fullscreen
-                      ? const BouncingScrollPhysics()
-                      : const NeverScrollableScrollPhysics(),
-                  children: <Widget>[
-                    !widget.fullscreen
-                        ? Row(
-                            children: [
-                              const Expanded(
-                                flex: 9,
-                                child: Text(
-                                  "Porsche 911 Turbo",
-                                  style: TextStyle(
-                                    fontFamily: 'sfPro',
-                                    fontSize: 45,
-                                    fontWeight: FontWeight.w700,
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.only(
+                              bottom: widget.fullscreen ? 0 : 10, top: 0),
+                          padding: const EdgeInsets.all(0),
+                          child: Container(
+                            width: 30,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              color: const Color(0xffA8A6A7),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ))),
+                ),
+                Expanded(
+                  flex: widget.fullscreen ? 12 : 8,
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    decoration: const BoxDecoration(
+                        color: Color(0xfff0f0f0),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        )),
+                    child: ListView(
+                      physics: widget.fullscreen
+                          ? const BouncingScrollPhysics()
+                          : const NeverScrollableScrollPhysics(),
+                      children: <Widget>[
+                        !widget.fullscreen
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    flex: 9,
+                                    child: Text(
+                                      getString(widget.prediction),
+                                      style: const TextStyle(
+                                        fontFamily: 'sfPro',
+                                        fontSize: 45,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
                                   ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: double.maxFinite,
+                                        child: Image.network(
+                                            scale: 0.5,
+                                            information['Logo'] as String
+                                        ),
+                                      )),
+                                ],
+                              )
+                            : Container(),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: Image.network(
+                            information['Image'] as String
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 9,
+                              child: Text(
+                                getString(widget.prediction),
+                                style: const TextStyle(
+                                  fontFamily: 'sfPro',
+                                  fontSize: 45,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: double.maxFinite,
-                                    child: Image.network(
-                                        scale: 0.5,
-                                        "https://www.autocarbrands.com/wp-content/uploads/2014/04/porsche.png"),
-                                  )),
-                            ],
-                          )
-                        : Container(),
-                    const SizedBox(
-                      height: 55,
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Image.network(
-                        "https://www.pngpix.com/wp-content/uploads/2016/06/PNGPIX-COM-Red-Porsche-911-Carrera-Car-PNG-Image-500x255.png",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      children: [
-                        const Expanded(
-                          flex: 9,
-                          child: Text(
-                            "Porsche 911 Turbo",
-                            style: TextStyle(
-                              fontFamily: 'sfPro',
-                              fontSize: 45,
-                              fontWeight: FontWeight.w700,
                             ),
-                          ),
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: double.maxFinite,
-                              child: Image.network(
-                                  scale: 0.5,
-                                  "https://www.autocarbrands.com/wp-content/uploads/2014/04/porsche.png"),
-                            )),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    const Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                      style: TextStyle(
-                        fontFamily: 'sfPro',
-                        color: Color(0xff242424),
-                        fontSize: 21,
-                        letterSpacing: 0.2,
-                        height: 1.75,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 48,
-                    ),
-                    Row(
-                      children: const [
-                        Icon(
-                          color: Color(0xffA0A0A0),
-                          Icons.info_outline,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Information",
-                          style: TextStyle(
-                              fontFamily: 'sfPro',
-                              color: Color(0xffA0A0A0),
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.6),
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    InformationDetail(
-                        firstCategory: "Engine Location",
-                        firstValue: "Front",
-                        secondCategory: "Engine Type",
-                        secondValue: "V6"),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    InformationDetail(
-                        firstCategory: "Engine Max Power",
-                        firstValue: "300 HP",
-                        secondCategory: "Drive",
-                        secondValue: "AWD"),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    InformationDetail(
-                        firstCategory: "Engine Fuel Type",
-                        firstValue: "Gasoline",
-                        secondCategory: "Fuel Capacity",
-                        secondValue: "73 L"),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            child: Container(
-                                height: 130,
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: infoColor,
-                                ),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Text(
-                                      "6-speed shiftable automatic",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: 'sfPro',
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 24),
-                                    ),
-                                    SizedBox(
-                                      height: 12,
-                                    ),
-                                    Text(
-                                      "Transmission Type",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: 'sfPro',
-                                          color: Color(0xffA0A0A0),
-                                          fontSize: 13),
-                                    ),
-                                  ],
+                            Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: double.maxFinite,
+                                  child: Image.network(
+                                      scale: 0.5,
+                                      information['Logo'] as String),
                                 )),
-                          ),
-                        ]),
-                    const SizedBox(
-                      height: 70,
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Row(
+                          children: const [
+                            Icon(
+                              color: Color(0xffA0A0A0),
+                              Icons.info_outline,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Information",
+                              style: TextStyle(
+                                  fontFamily: 'sfPro',
+                                  color: Color(0xffA0A0A0),
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.6),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InformationDetail(
+                            firstCategory: "Engine Location",
+                            firstValue: information['Engine Location'] as String,
+                            secondCategory: "Engine Type",
+                            secondValue: information['Engine Type'] as String),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        InformationDetail(
+                            firstCategory: "Engine Max Power",
+                            firstValue: information['Engine Max Power'] as String,
+                            secondCategory: "Drive",
+                            secondValue: information['Drive'] as String),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        InformationDetail(
+                            firstCategory: "Engine Fuel Type",
+                            firstValue: information['Engine Fuel Type'] as String,
+                            secondCategory: "Fuel Capacity",
+                            secondValue: information['Fuel Capacity'] as String),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                    height: 130,
+                                    padding: const EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: infoColor,
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          information["Transmission Type"] as String,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              fontFamily: 'sfPro',
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 24),
+                                        ),
+                                        const SizedBox(
+                                          height: 12,
+                                        ),
+                                        const Text(
+                                          "Transmission Type",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontFamily: 'sfPro',
+                                              color: Color(0xffA0A0A0),
+                                              fontSize: 13),
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                            ]),
+                        const SizedBox(
+                          height: 70,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 }
@@ -275,6 +282,7 @@ class CarInfoSingleBox extends StatelessWidget {
           children: [
             Text(
               value,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                   fontFamily: 'sfPro',
                   color: Colors.black,
