@@ -32,6 +32,8 @@ class _FirstPageState extends State<FirstPage> {
 
   late File _image;
 
+  bool _loading = false;
+
   String prediction = "";
 
   @override
@@ -48,9 +50,6 @@ class _FirstPageState extends State<FirstPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final deviceRatio = size.width / size.height;
-    final xScale = controller.value.aspectRatio / deviceRatio;
 
     return Container(
         height: MediaQuery.of(context).size.height,
@@ -62,7 +61,7 @@ class _FirstPageState extends State<FirstPage> {
         )),
         child: Column(
           children: [
-            if (!widget.active)
+            if (!widget.active && !_loading)
               Expanded(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
@@ -93,13 +92,19 @@ class _FirstPageState extends State<FirstPage> {
                                     final a =
                                         await cameraController.takePicture();
                                     var temp = "";
-                                    pictureFile = a.path;
-                                    _image = File(pictureFile);
+
+                                    setState(() {
+                                      pictureFile = a.path;
+                                       _image = File(pictureFile);
+                                      _loading = true;
+                                    });
+
                                     temp = await _classifier.predict(_image);
                                     
                                     setState(() {
                                       pictureFile = a.path;
                                       prediction = temp;
+                                      _loading = false;
                                       widget.onValueChanged(temp);
                                     });
                                   },
@@ -134,6 +139,46 @@ class _FirstPageState extends State<FirstPage> {
                             ],
                           ),
                         )),
+                  ),
+                ),
+              ),
+            if (_loading)
+              Expanded(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(0),
+                  margin: const EdgeInsets.all(0),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.file(fit: BoxFit.cover, _image),
+                        ),
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: const [
+                              CircularProgressIndicator(),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "Getting Prediction",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                        )
+                      ]
+                    ),
                   ),
                 ),
               ),

@@ -1,7 +1,7 @@
 // ignore: file_names
-import 'package:carapp/accountPage.dart';
-import 'package:carapp/SigninPage.dart';
-import 'package:carapp/signuppage.dart';
+import 'package:carapp/Auth/accountPage.dart';
+import 'SigninPage.dart';
+import 'signuppage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

@@ -1,6 +1,5 @@
-import 'package:carapp/Authpage.dart';
-import 'package:carapp/accountPage.dart';
-import 'package:carapp/signedin.dart';
+import 'Authpage.dart';
+import 'package:carapp/Auth/accountPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

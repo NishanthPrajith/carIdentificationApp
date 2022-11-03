@@ -10,7 +10,8 @@ class signup extends StatefulWidget {
   State<signup> createState() => _signup();
 }
   
-  class _signup extends State<signup> {
+class _signup extends State<signup> {
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -25,34 +26,73 @@ class signup extends StatefulWidget {
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
       email: _emailController.text.trim(), 
       password: _passwordController.text.trim(),);
+    await FirebaseAuth.instance.currentUser!.updateDisplayName(_nameController.text.trim());
   }
 
 
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(78, 224, 224, 224),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-              // Hello again 
-              const Text(
-                'Welcome',
-                style: TextStyle (
-                  fontWeight: FontWeight.bold,
-                  fontSize: 36,),),
-              const SizedBox(height: 10),
-
-              const Text(
-                'Sign in below',
-                style: TextStyle (
-                  fontSize: 20,),
+        child: Container(
+          color: Colors.black,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
+            ),
+            child: Center(
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  // Hello again 
+                  const Text(
+                    'Welcome',
+                    style: TextStyle (
+                      fontWeight: FontWeight.bold,
+                      fontSize: 32,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+          
+                  const Text(
+                    'Sign up below',
+                    style: TextStyle (
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 50),
-          
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      // profile name Text
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          controller: _nameController,
+                          decoration: const InputDecoration(
+                            border:  InputBorder.none,
+                            hintText: 'Profile name',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+              
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
@@ -62,10 +102,11 @@ class signup extends StatefulWidget {
                           borderRadius: BorderRadius.circular(12),
                           ),
                       // email Text
-
+      
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
                           controller: _emailController,
                           decoration: const InputDecoration(
                             border:  InputBorder.none,
@@ -75,9 +116,9 @@ class signup extends StatefulWidget {
                       ),
                     ),
                   ),
-              const SizedBox(height: 20),
-              // Password
-              Padding(
+                  const SizedBox(height: 15),
+                  // Password
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Container(
                       decoration: BoxDecoration(
@@ -87,8 +128,8 @@ class signup extends StatefulWidget {
                           ),
           
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: TextFormField(
                           obscureText : true,
                           controller: _passwordController,
                           decoration: const InputDecoration(
@@ -99,50 +140,50 @@ class signup extends StatefulWidget {
                       ),
                     ),
                   ),
-              const SizedBox(height: 10),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  onTap: SignUp,
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(color: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(12)),
-                    child:  const Center(
-                      child:  Text('Sign Up',
-                      style: TextStyle(color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      ),
+                  const SizedBox(height: 40),
+          
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: GestureDetector(
+                      onTap: SignUp,
+                      child: Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(12)
+                        ),
+                        child:  const Center(
+                          child:  Text('Sign Up',
+                          style: TextStyle(color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 25),
+                  // Signup
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Already have an account?'),
+                      GestureDetector(
+                        onTap: widget.showaccountPage,
+                        child: const Text(
+                          ' Sign in',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        ),
+                      ),
+                    ],
+                  )
+                ]),
               ),
-              const SizedBox(height: 25),
-              // Signup
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Already have an account?',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: widget.showaccountPage,
-                    child: Text(
-                      ' Sign in',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    ),
-                  ),
-                ],
-              )
-            ]),
+            ),
           ),
         ),
       ),

@@ -132,6 +132,7 @@ class _SearchPageState extends State<SearchPage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Text("Loading");
                   }
+                  print(snapshot.data!.docs.length);
 
                   return ListView(
                     children:

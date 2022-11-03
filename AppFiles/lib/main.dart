@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'firstPage.dart';
-import 'accountPage.dart';
+import 'Auth/accountPage.dart';
 import 'searchPage.dart';
+import 'Auth/main_page.dart';
 
 import 'package:flutter/services.dart';
 
@@ -174,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onValueChanged: onPressed,
                                 cameras: cameras,
                                 active: _active),
-                            const AccountPage(),
+                            const MainPage(),
                           ]),
                     )),
                 Expanded(
