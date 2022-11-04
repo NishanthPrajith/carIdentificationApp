@@ -1,4 +1,5 @@
 // ignore: file_names
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -21,12 +22,51 @@ class _signup extends State<signup> {
     _passwordController.dispose();
     super.dispose();
   }
+
+  int error = 0;
+  String errorMessage = "";
   
   Future SignUp() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: _emailController.text.trim(), 
-      password: _passwordController.text.trim(),);
-    await FirebaseAuth.instance.currentUser!.updateDisplayName(_nameController.text.trim());
+    if (_nameController.text.trim() == "" || _emailController.text.trim() == "" || _passwordController.text.trim() == "") {
+      setState(() {
+        error = 1;
+      });
+    } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_emailController.text.trim())) {
+      setState(() {
+        error = 2;
+      });
+    } else {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(), 
+          password: _passwordController.text.trim(),);
+        await FirebaseAuth.instance.currentUser!.updateDisplayName(_nameController.text.trim());
+        await FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).set({
+          'saved': [],
+        });
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          error = 3;
+          var temp = "";
+          var check = true;
+          for (var i = 0; i < e.code.length; i++) {
+            if (e.code[i] == "-") {
+              temp += " ";
+              check = true;
+            } else {
+              if (check) {
+                temp += e.code[i].toUpperCase();
+                check = false;
+              } else {
+                temp += e.code[i];
+              }
+            }
+          }
+          errorMessage = temp;
+        });
+      }
+      
+    }
   }
 
 
@@ -140,8 +180,26 @@ class _signup extends State<signup> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  error == 1 ? const Text(
+                    "Please fill in all fields",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ) : const SizedBox(height: 0),
+                  error == 2 ? const Text(
+                    "Please enter a valid email",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ) : const SizedBox(height: 0),
+                  error == 3 ? Text(
+                    errorMessage,
+                    style: const TextStyle(
+                      color: Colors.red,
+                    ),
+                  ) : const SizedBox(height: 0),
                   const SizedBox(height: 40),
-          
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: GestureDetector(

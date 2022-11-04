@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'detailsPage.dart';
 
+
+
 class CarListItem extends StatelessWidget {
   const CarListItem({
     super.key,
+    required this.id,
     required this.make,
     required this.model,
     required this.engineLocation,
@@ -17,6 +20,7 @@ class CarListItem extends StatelessWidget {
     required this.logo,
   });
 
+  final String id;
   final String make;
   final String model;
   final String engineLocation;
@@ -32,6 +36,7 @@ class CarListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final carListItem = CarListItem(
+      id: id,
       make: make,
       model: model,
       engineLocation: engineLocation,
@@ -59,11 +64,12 @@ class CarListItem extends StatelessWidget {
       },
       child: Container(
           height: 75,
+          width: double.infinity,
           decoration: const BoxDecoration(
               color: Color(0xffe5e5e5),
               borderRadius: BorderRadius.all(Radius.circular(20))),
-          margin: const EdgeInsets.fromLTRB(25, 0, 25, 20),
-          padding: const EdgeInsets.fromLTRB(8, 8, 0, 4),
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+          padding: const EdgeInsets.fromLTRB(22, 10, 22, 6),
           child: Stack(
             children: [
               Container(
@@ -75,7 +81,7 @@ class CarListItem extends StatelessWidget {
                   )),
               Container(
                 alignment: Alignment.centerRight,
-                padding: const EdgeInsets.only(top: 8, right: 46),
+                padding: const EdgeInsets.only(top: 8),
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -102,19 +108,6 @@ class CarListItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                  alignment: Alignment.centerRight,
-                  width: MediaQuery.of(context).size.width,
-                  child: IconButton(
-                    icon: saved
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    color: saved ? Colors.red : Color(0xFF757575),
-                    onPressed: () {
-                      saved = !saved;
-                      print('pressed fav icon');
-                    },
-                  )),
             ],
           )),
     );

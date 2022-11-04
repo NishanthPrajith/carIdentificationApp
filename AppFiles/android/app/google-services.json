@@ -31,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "1083464498669-jrld4sghl3dqbmcqstmci8e4u1hfvloh.apps.googleusercontent.com",
+              "client_id": "1083464498669-8l6brt3cuudgu5nsicfkojvq48cl35f4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.carapp"
+                "bundle_id": "com.example.carmeapp"
               }
             }
           ]

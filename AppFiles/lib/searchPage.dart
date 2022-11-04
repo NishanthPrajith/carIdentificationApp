@@ -132,27 +132,30 @@ class _SearchPageState extends State<SearchPage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Text("Loading");
                   }
-                  print(snapshot.data!.docs.length);
 
-                  return ListView(
-                    children:
-                        snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                          document.data()! as Map<String, dynamic>;
-                      return CarListItem(
-                        make: valExists(data['Make']),
-                        model: valExists(data['Model']),
-                        engineLocation: valExists(data['Engine Location']),
-                        engineType: valExists(data['Engine Type']),
-                        engineMaxPower: valExists(data['Engine Max Power']),
-                        drive: valExists(data['Drive']),
-                        engineFuelType: valExists(data['Engine Fuel Type']),
-                        fuelCapacity: valExists(data['Fuel Capacity']),
-                        transmissionType: valExists(data['Transmission Type']),
-                        image: valExists(data['Image']),
-                        logo: valExists(data['Logo']),
-                      );
-                    }).toList(),
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                    child: ListView(
+                      children:
+                          snapshot.data!.docs.map((DocumentSnapshot document) {
+                        Map<String, dynamic> data =
+                            document.data()! as Map<String, dynamic>;
+                        return CarListItem(
+                          id: document.id,
+                          make: valExists(data['Make']),
+                          model: valExists(data['Model']),
+                          engineLocation: valExists(data['Engine Location']),
+                          engineType: valExists(data['Engine Type']),
+                          engineMaxPower: valExists(data['Engine Max Power']),
+                          drive: valExists(data['Drive']),
+                          engineFuelType: valExists(data['Engine Fuel Type']),
+                          fuelCapacity: valExists(data['Fuel Capacity']),
+                          transmissionType: valExists(data['Transmission Type']),
+                          image: valExists(data['Image']),
+                          logo: valExists(data['Logo']),
+                        );
+                      }).toList(),
+                    ),
                   );
                 },
               )),

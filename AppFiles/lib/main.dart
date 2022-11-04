@@ -159,6 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     flex: _active ? 8 : 12,
                     child: Container(
                       width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
