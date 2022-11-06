@@ -1,0 +1,24 @@
+model,Engine Location,Engine Type,Engine Max Power,Drive,Engine Fuel Type,Fuel Capacity,Transmission Type
+sienna,Front,V6,262,FWD,Regular Unleaded,20 L,Automatic
+cherokee,Front,Inline-4,170,FWD,Regular Unleaded,14 L,Automatic
+focus SE,Front,Inline-4,158,FWD,Flex-Fuel,12 L,Manual
+civic,Front,Inline-4,108,FWD,Regular Unleaded,13 L,Automatic
+accord,Front,Inline-4,182,FWD,Regular Unleaded,17 L ,Automatic
+mustang GT,Front,V8,429,RWD,Permium Unleaded,16 L,Manual
+camaro SS,Front ,V8,420,RWD,Permium Unleaded,19 L,Manual
+corvette,Front ,V8,449,RWD,Permium Unleaded,? L,Manual
+rav4,Front ,Inline-4,174,FWD,Regular Unleaded,16 L,Automatic
+camry,Front ,Inline-4,176,FWD,Regular Unleaded,17 L,Automatic
+corolla,Front,Inline-4,130,FWD,Regular Unleaded,13 L,Automatic
+g-class,Front,V8,377,4WD,Premium Unleaded,25 L,Automatic
+s-class,Front,V8,443,RWD,Premium Unleaded,21 L,Automatic
+g-class amg,Front,V8,529,4WD,Premium Unleaded,25 L,Automatic
+3 series 328i,Front,Inline-4,237,RWD,Premium Unleaded,16 L,Automatic
+5 series 550i,Front,V8,437,AWD,Premium Unleaded,? L,Automatic
+m3,Front,Inline-6,419,RWD,Premium Unleaded,16 L,Manual
+x3,Front,Inline-4,237,AWD,Premium Unleaded,18 L,Automatic
+911 Turbo,Front,Flat-6,552,AWD,Premium Unleaded,18 L,Automated Manual
+model X,None,Dual Electric Motor,670,AWD,Electric,330 mi,1-speed Direct Drive
+model Y,None,Dual Electric Motor,450,AWD,Electric,326 mi,1-speed Direct Drive
+model 3,None,Dual Electric Motor,513,AWD,Electric,272 mi,1-speed Direct Drive
+model S,None,Dual Electric Motor,670,AWD,Electric,405 mi,1-speed Direct Drive
