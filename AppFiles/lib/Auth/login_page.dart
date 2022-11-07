@@ -31,24 +31,24 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Color.fromARGB(45, 224, 224, 224),
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(
+          child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               // Hello again 
-              Text(
+              const Text(
                 'Hello again',
                 style: TextStyle (
                   fontWeight: FontWeight.bold,
                   fontSize: 36,),),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
-              Text(
+              const Text(
                 'Welcome back you have been misszed',
                 style: TextStyle (
                   fontSize: 20,),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
           
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Password
               Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),

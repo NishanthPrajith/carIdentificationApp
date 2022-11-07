@@ -75,7 +75,7 @@ class _SigninPage extends State<SigninPage> {
             ),
           ),
           child: Center(
-            child: SingleChildScrollView(
+            child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -105,8 +105,10 @@ class _SigninPage extends State<SigninPage> {
         
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: TextField(
+                          child: TextFormField(
                             controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            enabled: true,
                             decoration: const InputDecoration(
                               border:  InputBorder.none,
                               hintText: 'Email',

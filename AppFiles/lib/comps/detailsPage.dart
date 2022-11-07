@@ -24,28 +24,30 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   void initState() {
     // TODO: implement initState
-    setState(() {
-      final userId = FirebaseAuth.instance.currentUser!.uid;
-      final docId = widget.carInfo.id;
+    if (FirebaseAuth.instance.currentUser != null) {
+      setState(() {
+        final userId = FirebaseAuth.instance.currentUser!.uid;
+        final docId = widget.carInfo.id;
 
-      final docRef = FirebaseFirestore.instance.collection("Users").doc(userId);
-      docRef.get().then(
-        (DocumentSnapshot doc) {
-          final data = doc.data() as Map<String, dynamic>;
-          if (data['saved'].contains(docId)) {
-            setState(() {
-              alreadySaved = true;
-            });
-          } else {
-            setState(() {
-              alreadySaved = false;
-            });
-          }
-          // ...
-        },
-        onError: (e) => print("Error getting document: $e"),
-      );
-    });
+        final docRef = FirebaseFirestore.instance.collection("Users").doc(userId);
+        docRef.get().then(
+          (DocumentSnapshot doc) {
+            final data = doc.data() as Map<String, dynamic>;
+            if (data['saved'].contains(docId)) {
+              setState(() {
+                alreadySaved = true;
+              });
+            } else {
+              setState(() {
+                alreadySaved = false;
+              });
+            }
+            // ...
+          },
+          onError: (e) => print("Error getting document: $e"),
+        );
+      });
+    }
     super.initState();
   }
   
@@ -107,7 +109,8 @@ class _DetailsPageState extends State<DetailsPage> {
                           )),
                       FirebaseAuth.instance.currentUser != null ? Expanded(
                         flex: 2,
-                        child: alreadySaved ? IconButton(
+                        child: alreadySaved ? 
+                        IconButton(
                           onPressed: (() {
                             setState(() {
                               unsave(FirebaseAuth.instance.currentUser!.uid, widget.carInfo.id);
