@@ -2,12 +2,12 @@ import 'package:image/image.dart' as img;
 import 'package:flutter/material.dart';
 import 'dart:io';
 
-import 'testClassifier.dart';
+import 'classifier.dart';
 
 import 'package:camera/camera.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage(
+class CameraPage extends StatefulWidget {
+  const CameraPage(
       {Key? key,
       required this.onValueChanged,
       required this.cameras,
@@ -19,10 +19,10 @@ class FirstPage extends StatefulWidget {
   final bool active;
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<CameraPage> createState() => _CameraPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
+class _CameraPageState extends State<CameraPage> {
   late CameraController controller;
   String pictureFile = "";
 
@@ -196,13 +196,6 @@ class _FirstPageState extends State<FirstPage> {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * (8 / 13),
                         child: Image.file(fit: BoxFit.cover, File(pictureFile)),
-                      ),
-                      Text(
-                        prediction ?? "",
-                        style: const TextStyle(
-                          fontSize: 30,
-                          color: Colors.red,
-                        ),
                       ),
                     ],
                   ),

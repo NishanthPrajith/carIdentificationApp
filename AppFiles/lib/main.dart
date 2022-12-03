@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'firstPage.dart';
+import 'cameraPage.dart';
 import 'Auth/accountPage.dart';
 import 'searchPage.dart';
 import 'Auth/main_page.dart';
@@ -172,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: <Widget>[
                             const SearchPage(),
                             // ignore: void_checks
-                            FirstPage(
+                            CameraPage(
                                 onValueChanged: onPressed,
                                 cameras: cameras,
                                 active: _active),

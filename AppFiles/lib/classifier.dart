@@ -33,7 +33,7 @@ class Test {
     final meanOurs = [0.485, 0.456, 0.406];
     final stdOurs = [0.229, 0.224, 0.225];
 
-    Model imageModel = await PyTorchMobile.loadModel("assets/models/test_original.pt");
+    Model imageModel = await PyTorchMobile.loadModel("assets/models/model_save_actual.pt");
 
     Model two = await PyTorchMobile.loadModel("assets/models/model_save_actual.pt");
 
