@@ -280,7 +280,7 @@ class CarInfoSingleBox extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            (value != "Dual Electric Motor") ? Text(
               value,
               textAlign: TextAlign.center,
               style: const TextStyle(
@@ -288,6 +288,14 @@ class CarInfoSingleBox extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 24),
+            ) :  Text(
+              value,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'sfPro',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22),
             ),
             const SizedBox(
               height: 12,
