@@ -10,8 +10,6 @@
 </div>
 <br/>
 
-
-
 CarMe is a car detection app that helps users discover the model of a car that they are interested in. This is done through the use of an image classification model. CarMe can detect over 23 unique car models ([full list of car models](#Full-list-of-23-classes-of-cars)). Besides classifying cars, CarMe also allows users to browse all available cars, search for a specific car by name or model, and save any cars to their favorites list. Our hope is that this app would allows the users to identify unique/classic cars. Cars that many people do not see on a daily basis.
 
 
@@ -535,6 +533,17 @@ After, training the RegNet_y_3_2gf using this new fully connected layer architec
         <p style="color:grey">Image size : 272<p>
     </div>
 </div>
+<table border="none">
+ <tr>
+  <td>
+   <div>
+    <h2>70.55%</h2>
+    <p style="color:grey">Image size : 263<p>
+   </div>
+  </td>
+  <td>Lorem ipsum ...</td>
+ </tr>
+</table
 
 From this we noticed that our accuracy increased by over 6%. This was quite a significant improvement hence, we decided to play around with the fully connected layer even more to observe the changes.
 
