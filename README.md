@@ -546,7 +546,7 @@ After, training the RegNet_y_3_2gf using this new fully connected layer architec
 
 With this new change in the fully connected layer architecture our accuracy increased 0.34%. Althought, this accuracy was not really that significant we figured out approach was going in the right direction.
 
-So, we doubled down and decided to train the model for 25 epochs and well got the following result.
+So, we doubled down and decided to train the model for 25 epochs and well got the following result. [Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EQZnwKKyPjBEh-HfUuzYNF0Bd2ns73jp4gBwsgWaXs0X2A?e=C6fSFf)
 
 ```
 71.23% : Image Size - 256
@@ -613,7 +613,7 @@ ensemble_model = ensemble_model.to("cuda:0")
 
 After, building the model and training the model for 25 epochs with different learning rates we got the following result.
 
-**Learning rate 0.007**
+**Learning rate 0.007** [Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/ES6OWDUmx4tPs6UeJjVUa-8BbfVWEcxPMu-Zmu3VLmnEoQ?e=Pi3P1R)
 
 Testing Accuracy
 ```
@@ -631,7 +631,7 @@ Front : 67.14%
 Back : 63.16%
 ```
 
-**Learning rate 0.01**
+**Learning rate 0.01** [Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/Eaw4iWF6MNVLteV1tje5BO4BFW_E6gan9XtWX6Ybb96_1A?e=Z1TLgn)
 
 Testing Accuracy
 ```
@@ -691,7 +691,7 @@ ensemble_model = ensemble_model.to("cuda:0")
 
 After, building the model and training the model for 25 epochs with different learning rates we got the following result.
 
-**Learning rate 0.007**
+**Learning rate 0.007** [Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EdblONSEdyBGsdzf-HJulx8BaSgZO3l7ypCtXtPcNduHfg?e=Y96QW5)
 
 Testing Accuracy
 ```
@@ -709,7 +709,7 @@ Front : 65.714%
 Back : 63.16%
 ```
 
-**Learning rate 0.01**
+**Learning rate 0.01** [Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EdmxzVjEpiNOg_ZN7Tt9R1kBSSY6zWUIeyiO1KvxvfhdTg?e=THzOo9)
 
 Testing Accuracy
 ```
@@ -786,6 +786,7 @@ ensemble_model = ensemble_model.to("cuda:0" if torch.cuda.is_available() else "c
 
 After, building the model and training the model for 25 epochs with a learning rate of 0.008 we got the following results.
 
+[Model Link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EUEBZ2LQx59DsYK4uEor9nQBLBfw5FhXcF3QENXEseuL4A?e=c6E8ET)
 
 Testing Accuracy
 <div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
