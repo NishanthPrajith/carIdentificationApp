@@ -12,7 +12,7 @@
 
 
 
-CarMe is a car detection app that helps users discover the model of a car that they are interested in. This is done through the use of an image classification model. CarMe can detect over 23 unique car models ([full list of car models][#Full-list-of-23-classes-of-cars]). Besides classifying cars, CarMe also allows users to browse all available cars, search for a specific car by name or model, and save any cars to their favorites list. Our hope is that this app would allows the users to identify unique/classic cars. Cars that many people do not see on a daily basis.
+CarMe is a car detection app that helps users discover the model of a car that they are interested in. This is done through the use of an image classification model. CarMe can detect over 23 unique car models ([full list of car models](#Full-list-of-23-classes-of-cars)). Besides classifying cars, CarMe also allows users to browse all available cars, search for a specific car by name or model, and save any cars to their favorites list. Our hope is that this app would allows the users to identify unique/classic cars. Cars that many people do not see on a daily basis.
 
 
 ## Design
