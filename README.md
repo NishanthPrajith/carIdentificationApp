@@ -214,7 +214,7 @@ Currently, the app only works on Android devices. So to run the app one would re
 
 ## Machine Learning Dataset Description
 ### Training Dataset
-Our training dataset can be found here in this [OneDrive link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EbQNr7_DIz9FqzamL3oMeqQBwouzHvIVHDBh0UrCgep0PQ?e=DnG5Vz) and includes about 60,000 images of 23 different car classes *(listed below)*. 
+Our training dataset can be found here in this [OneDrive link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EbQNr7_DIz9FqzamL3oMeqQBwouzHvIVHDBh0UrCgep0PQ?e=DnG5Vz) and includes about 46,000 images of 23 different car classes *(listed below)*. 
 
 #### Full list of 23 classes of cars
 
@@ -262,7 +262,7 @@ In the end you should have a folder called `final_dataset` in your local environ
 **Remember to check the final dataset to ensure all of your classes are in the dataset!**
 
 ### Testing Dataset
-Our testing dataset is uploaded into this [GoogleDrive link]() and it includes about 800 images. This dataset includes some images we took using our phones as well as images downloaded from the web using the [Baidu](https://www.baidu.com/) search engine. We did this specifically to ensure the validity of the dataset and prevent the chances of any images being part of both the testing and training dataset.
+Our testing dataset is uploaded into this [OneDrive link](https://ccnymailcuny-my.sharepoint.com/:u:/g/personal/nprajit000_citymail_cuny_edu/EUuuTUfAJINOotZ9mbhSdOoBVPIWfnKJYuCM6sQZWNjEJA?e=CnYoC3) and it includes about 300 images. This dataset includes some images we took using our phones as well as images downloaded from the web using the [Baidu](https://www.baidu.com/) search engine. We did this specifically to ensure the validity of the dataset and prevent the chances of any images being part of both the testing and training dataset.
 
 Each image in this dataset is a named in a specific way to get detailed insights about the model when testing. So, if you add more images please adhere to this standard which we will explain here.
 
