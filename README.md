@@ -1073,10 +1073,10 @@ In terms of usability we will need to fix the fact the app is currently only wor
 
 ## Theoretical Roadmap
 This is a theoretical roadmap for the future direction of this app if we were to develop this into a fully functioning consumer-grade product.
-1. Release the app in the App Store and Play Store for beta testing
-2. Perform more experiments and improvements based on user feedback
-3. Add more car models for classification
-4. Adapt the final model for other use cases such as car seller verification in the form of an API
+1. The first thing we want to do is release the app in to the App store and Play store for beta testing. As mentioned earlier, we are currenly experiencing a camera issue, and we will fix that first before releasing. After we fixed all the issues, people with both android and apple devices should be able to use our app.
+2. Perform more experiments and improvements based on user feedback. This will include adding more features based on user feedbacks. For example, we are thinking of adding a feature to let the user provide feedback to indicate if the classification is correct or not, and for each prediction, we will store the image to our server. 
+3. Add more car models for classification. For this users we will be able to upload data (car images) for the model that we currenly don't have in our database. And we will retrain the model after a period of time. All of these will eventually help us improve the user experience and the performance of the model.
+4. Adapt the final model for other use cases such as car seller verification in the form of an API. 
 
 <br/>
 
