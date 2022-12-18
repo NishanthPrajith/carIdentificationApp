@@ -43,7 +43,7 @@ At a granular level, the user interacts with the app through the use of the came
 <div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
-    <img src = "https://i.imgur.com/nhngX9C.png" />
+    <img src = "https://i.imgur.com/CJiaNpA.png" />
 </div>
 <br/>
 
@@ -55,7 +55,7 @@ If they choose to click the white button, the app within a few seconds will take
 <div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
-    <img src = "https://i.imgur.com/nhngX9C.png" />
+	<img src = "https://i.imgur.com/tS6vPhm.png" />
 </div>
 <br/>
 
@@ -65,7 +65,7 @@ Once, the model provides the prediction to the app the user will be greeted with
 <div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
-    <img src = "https://i.imgur.com/nhngX9C.png" />
+    <img src = "https://i.imgur.com/mtHmVo6.png" />
 </div>
 <br/>
 
@@ -75,7 +75,7 @@ Here, the user can see the prediction of the model on the bottom in the slide up
 <div align="center"style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
-    <img src = "https://i.imgur.com/nhngX9C.png" />
+    <img src = "https://i.imgur.com/Skl4nhe.png" />
 </div>
 <br/>
 
