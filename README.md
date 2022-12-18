@@ -306,33 +306,15 @@ After, we realized DenseNet161 accuracy was not improving we decided it was time
 ### Different pre-trained models
 
 One of the first things we tried was different pre-trained models like ResNet, RegNet_y_3_2gf, RegNet_y_8gf,. Inception, MobileNet_v3_large, and GoogleNet in place of DenseNet which we have been using. We wanted to see if using a different pre-trained model will produce a better result. This could possibly mean we can go down a different road and see how to improve the accuracy and build a better model. After training the each of the pre-trained model and testing them we got the following testing accuracy result.
+<br/>
 
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>56.17%</h2>
-        <p>MobileNet<p>
-    </div>
-    <div>
-		<h2>62.33%</h2>
-        <p>Inception V3<p>
-    </div>
-    <div>
-		<h2>59.67%</h2>
-        <p>GoogLeNet<p>
-    </div>
-    <div>
-		<h2>58.56%</h2>
-        <p>ResNet50<p>
-    </div>
-    <div>
-		<h2>64.04%</h2>
-        <p>RegNet_y_8gf<p>
-    </div>
-    <div>
-		<h2>64.72%</h2>
-        <p>RegNet_y_3_2gf<p>
-    </div>
-</div>
+## 56.17% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62.33% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 59.67%
+MobileNet &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inception V3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GoogLeNet
+
+## 58.56% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64.04% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64.72%
+ResNet50 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RegNet_y_8gf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RegNet_y_3_2gf
+
+<br/>
 
 After looking at the each of testing accuracy results of the pre-trained models we noticed that both RegNet_y_8gf and RegNet_y_3_3gf did outperform the DenseNet161 by over 2%. This provided the first indication that maybe DenseNet was not a good choice and RegNet models could prove to be more better at this type of classification.
 
@@ -345,16 +327,13 @@ transforms.Resize(256)
 transforms.CenterCrop(224)
 ```
 But, when testing the models accuracy on the test dataset we only added the ``Resize`` transformation. But, we decided to add the ``CenterCrop`` transformation to see what would happend. And interestingly we noticed our results increased. In fact, it increased the accuracy of the RegNet models by 2% to the following.
-<div style="display: grid; grid-template-columns: repeat(2, 40%); margin-bottom:4.5%; column-gap:10%; row-gap:1.5%">
-    <div>
-		<h2>66.44%</h2>
-        <p>RegNet_y_8gf<p>
-    </div>
-    <div>
-		<h2>66.10%</h2>
-        <p>RegNet_y_3_2gf<p>
-    </div>
-</div>
+
+<br/>
+
+## 66.44% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 66.10%
+RegNet_y_8gf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RegNet_y_3_2gf
+
+<br/>
 
 Unfortunately, although the addition of the ``CenterCrop`` transformation did improve the accuracy. There was no way to do this in flutter since, the 'pytorch_mobile' only allowed for `Resize` transformation and not any kind of `CenterCrop` transformation.
 
@@ -519,31 +498,14 @@ model.fc = nn.Sequential(
 )
 ```
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 20 epochs we got the following results.
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>70.55%</h2>
-        <p style="color:grey">Image size : 263<p>
-    </div>
-    <div>
-		<h2>70.21%</h2>
-        <p style="color:grey">Image size : 288<p>
-    </div>
-    <div>
-		<h2>69.86%</h2>
-        <p style="color:grey">Image size : 272<p>
-    </div>
-</div>
-<table border="none">
- <tr>
-  <td>
-   <div>
-    <h2>70.55%</h2>
-    <p style="color:grey">Image size : 263<p>
-   </div>
-  </td>
-  <td>Lorem ipsum ...</td>
- </tr>
-</table
+
+<br/>
+
+## 70.55% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.21% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69.86%
+Image Size : 263 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 288 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 272
+
+<br/>
+
 
 From this we noticed that our accuracy increased by over 6%. This was quite a significant improvement hence, we decided to play around with the fully connected layer even more to observe the changes.
 
@@ -561,20 +523,13 @@ model.fc = nn.Sequential(
 )
 ```
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 25 epochs we got the following results.
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>68.49%</h2>
-        <p style="color:grey">Image size : 275<p>
-    </div>
-    <div>
-		<h2>66.44%</h2>
-        <p style="color:grey">Image size : 256<p>
-    </div>
-    <div>
-		<h2>65.75%</h2>
-        <p style="color:grey">Image size : 260<p>
-    </div>
-</div>
+
+<br/>
+
+## 68.49% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;66.44% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;65.75%
+Image Size : 275 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 256 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 260
+
+<br/>
 
 From this we noticed that our accuracy decreasd by 2% from the previous attempt. This was bad. Initially our assumption was that we trained this model for 25 epochs instead of 20. This was a rather a stupid assumption but we assumed maybe it was overfitting. But, even after training on 20 epochs the accuracy did not improve nor did it come close. After this we decided that maybe going half was not the right choice and that we were wrong to assume that the accuracy was going to improve.
 
@@ -589,30 +544,26 @@ model.fc = nn.Sequential(
 )
 ```
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 20 epochs we got the following results.
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>70.89%</h2>
-        <p style="color:grey">Image size : 288<p>
-    </div>
-    <div>
-		<h2>70.55%</h2>
-        <p style="color:grey">Image size : 284<p>
-    </div>
-    <div>
-		<h2>70.21%</h2>
-        <p style="color:grey">Image size : 262<p>
-    </div>
-</div>
+
+<br/>
+
+## 70.89% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.55% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.21%
+Image Size : 288 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 284 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 262
+
+<br/>
 
 With this new change in the fully connected layer architecture our accuracy increased 0.34%. Althought, this accuracy was not really that significant we figured out approach was going in the right direction.
 
 So, we doubled down and decided to train the model for 25 epochs and well got the following result.
+
+<br/>
 <div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
 	<div>
 		<h2 style="text-align: center">71.23%</h2>
         <p style="color:grey">Image size : 256<p>
     </div>
 </div>
+<br/>
 
 Our accuracy increased by close to 0.70% from the base line. A rather good improvement but still we had a long way for improvement.
 
@@ -1263,104 +1214,10 @@ In terms of usability we will need to fix the fact the app is currently only wor
 
 ## Theoretical Roadmap
 This is a theoretical roadmap for the future direction of this app if we were to develop this into a fully functioning consumer-grade product.
-
-<div style="width:100%; height:480px">
-    <div style="position: absolute; width:100%; height:400px">
-        <div style="position: absolute; width:100%;display: grid; grid-template-columns:49.8% 0.4% 49.8%">
-            <div style="width:100%">
-                <p style="color: white">
-                    dd
-                </p>
-            </div>
-            <div style="width:100%;height:480px;background-color: #DCDCDC">
-                <p style="font-size:0.1em;color: #DCDCDC">
-                    dd
-                </p>
-            </div>
-            <div style="width:100%">
-                <p style="color: white">
-                    dd
-                </p>
-            </div>
-        </div>
-         <div style="position: absolute; width:100%; display: grid; grid-template-columns: 49% 2% 49%; height: 100px">
-            <div style="padding: 0% 5%">
-                <h5>
-                    1
-                </h5>
-                <p>
-                    Release the app in the App Store and Play Store for beta testing
-                </p>
-            </div>
-            <div style="display: grid; height:100px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-        </div>
-        <div style="margin-top:100px;position: absolute; width:100%; display: grid; grid-template-columns:49% 2% 49%; height: 100px">
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-            <div style="display: grid; height:110px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="padding: 0% 5%">
-                <h5>
-                    2
-                </h5>
-                <p>
-                    Perform more experiments and improvements based on user feedback
-                </p>
-            </div>
-        </div>
-        <div style="margin-top:220px;position: absolute; width:100%; display: grid; grid-template-columns:49% 2% 49%; height: 100px">
-            <div style="padding: 0% 5%">
-                <h5>
-                    3
-                </h5>
-                <p>
-                    Add more car models for classification
-                </p>
-            </div>
-            <div style="display: grid; height:100px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-        </div>
-        <div style="margin-top:320px;position: absolute; width:100%; display: grid; grid-template-columns:49% 2% 49%; height: 100px">
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-            <div style="display: grid; height:110px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="padding: 0% 5%">
-                <h5>
-                    4
-                </h5>
-                <p>
-                    Adapt the final model for other use cases such as car seller verification in the form of an API
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
+1. Release the app in the App Store and Play Store for beta testing
+2. Perform more experiments and improvements based on user feedback
+3. Add more car models for classification
+4. Adapt the final model for other use cases such as car seller verification in the form of an API
 <br/>
 
 ## Resources
