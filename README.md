@@ -841,12 +841,11 @@ flutter run
 ```
 
 ### Android Simulator
-==While it is possible to run the app using an Android Simulator it is designed to run on a physical device, which may cause some errors. To be able to run the application on an android simulator one must have a physical camera connected to the simulator. For example, a webcam, etc...==
+While it is possible to run the app using an Android Simulator it is designed to run on a physical device, which may cause some errors. To be able to run the application on an android simulator one must have a physical camera connected to the simulator. For example, a webcam, etc..
 
-==To run the app on an android simulator one must first create an Android Virtual Device. This step is important because we will be using an emulator and each instance of the Android Emulator uses an Android Virtual Device. To create an Android Virtual Device, we must first launch android studios and open device manager, this will allow us to create our device by selecting a certain Hardware (It does not matter which one you choose but it is recommended to choose a more recent Hardware) Our Next step is to choose a Hardware profile this could be one of the given profiles or you can create/import a hardware profile. Our final step is to select a system image for a particular API level. (It is recommended to choose an API from the recommended tab since they will most likely run the best).==
+To run the app on an android simulator one must first create an Android Virtual Device. This step is important because we will be using an emulator and each instance of the Android Emulator uses an Android Virtual Device. To create an Android Virtual Device, we must first launch android studios and open device manager, this will allow us to create our device by selecting a certain Hardware (It does not matter which one you choose but it is recommended to choose a more recent Hardware). Our Next step is to choose a Hardware profile this could be one of the given profiles or you can create/import a hardware profile. Our final step is to select a system image for a particular API level. (It is recommended to choose an API from the recommended tab since they will most likely run the best).
 
-==Once we have our Android Virtual Device, we can start the Android Emulator and run the app. To select the Android Virtual Device you want, go to the toolbar and select the specific Android Virtual Device. Then click run, it may take a couple of minutes to boot up. Once downloaded it will be on the device like any other physical device.==
-
+Once we have our Android Virtual Device, we can start the Android Emulator and run the app. To select the Android Virtual Device you want, go to the toolbar and select the specific Android Virtual Device. Then click run, it may take a couple of minutes to boot up. Once downloaded it will be on the device like any other physical device.
 <br/>
 
 ## Instructions on Training The Model
