@@ -1,16 +1,18 @@
 # CarMe
-(example: https://github.com/CompVis/stable-diffusion)
-<div style="display:grid; 
+
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img src = "https://i.imgur.com/cqYkHAR.png" />
     </div>
 </div>
+<br/>
 
 
 
-CarMe is a car detection app that helps users discover the model of a car that they are interested in. This is done through the use of an image classification model. CarMe can detect over 23 unique car models ([full list of car models](####Full-list-of-23-classes-of-cars)). Besides classifying cars, CarMe also allows users to browse all available cars, search for a specific car by name or model, and save any cars to their favorites list. Our hope is that this app would allows the users to identify unique/classic cars. Cars that many people do not see on a daily basis.
+CarMe is a car detection app that helps users discover the model of a car that they are interested in. This is done through the use of an image classification model. CarMe can detect over 23 unique car models ([full list of car models][Full list of 23 classes of cars]). Besides classifying cars, CarMe also allows users to browse all available cars, search for a specific car by name or model, and save any cars to their favorites list. Our hope is that this app would allows the users to identify unique/classic cars. Cars that many people do not see on a daily basis.
 
 
 ## Design
@@ -36,50 +38,62 @@ The following diagram shows the data flow in the software.
 
 ### User Interface Design
 At a granular level, the user interacts with the app through the use of the camera. Once, the user is loaded into the app they will be greeted to the camera page which is also the main page of the app *(shown below)*.
-<div style="display:grid; 
+
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <img src = "https://i.imgur.com/nhngX9C.png" />
 </div>
+<br/>
 
 Once, on this screen the user has the following options they can either click on the big white button to take a picture and have the ML model classify the image on the screen or navigate to the other pages using the navigation bar on the bottom. 
 
 If they choose to click the white button, the app within a few seconds will take a picture using the device's camera and then go into the loading screen *(shown below)* to wait for the model to provide the prediction on the taken image.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <img src = "https://i.imgur.com/nhngX9C.png" />
 </div>
+<br/>
 
 Once, the model provides the prediction to the app the user will be greeted with the following screen.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <img src = "https://i.imgur.com/nhngX9C.png" />
 </div>
+<br/>
 
 Here, the user can see the prediction of the model on the bottom in the slide up drawer. To view more information about the predicted car class the user can slide up on the drawer and see more detailed information about the car *(shown below)*. Here the user is free to scroll down and read more about the predicted car class.
 
-<div style="display:grid; 
+<br/>
+<div align="center"style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <img src = "https://i.imgur.com/nhngX9C.png" />
 </div>
+<br/>
 
 Once, the user is done scrolling they can slide down on the drawer from the top to go back to the screen from before. And slide down again on the drawer to go back to the camera for classifying another picture.
 
 Now, if the user selected to go the `account` option from the navigation bar they will be greeted with `sign in` page *(shown below)*. If the user does not have an account they can click on the blue `Sign Up` button on the bottom of the page and have themselves be taken to the sign up page *(also shown below)*.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img style="margin-right: 35px" src = "https://i.imgur.com/3jzLDkF.png" />
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img style="margin-left: 35px" src = "https://i.imgur.com/8UUtTzy.png" />
     </div>
 </div>
+<br/>
 
 Once, the user creates an account or logins in with their existing account they will be greeted with the main user dashboard. Here they can choose to sign out using the button on the top right corner or explore their favorite/saved cars by clicking on the individual item in the list. 
 
@@ -87,69 +101,82 @@ Clicking on the `Sign Out` button will take them back to the login page from bef
 
 *We have included the dashboard with and without a favorite cars list.*
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img style="margin-right: 35px" src = "https://i.imgur.com/h3K5FDR.png" />
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img style="margin-left: 35px" src = "https://i.imgur.com/6FcjpvS.png" />
     </div>
 </div>
+<br/>
 
 Last but not least the user can select to go to the search page from the navigation bar *(shown below)*.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img src = "https://i.imgur.com/78igXEX.png" />
     </div>
 </div>
+<br/>
 
 Here, they are free to browse the different car classes the current model can predict or use the search bar to search for a specific car using keywords as *shown below*.
 
-
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img src = "https://i.imgur.com/CXVTVR3.png" />
     </div>
 </div>
+<br/>
 
 If they choose to view more detailed information about a car they can click on the car tile and be taken to the details page *shown below*. Here the user can scroll down to view more information or click on the arrow at the top left hand corner to go back to the search page.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img src = "https://i.imgur.com/hdJYzRF.png" />
     </div>
 </div>
+<br/>
 
 Once, the user signs into their respective account, the above page will also have a heart on the right hand corner which the user can click on to add the car to their favorites list.
 
 *If the heart is filled it means it is saved else it is not.*
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img style="margin-right: 35px" src = "https://i.imgur.com/jO0CDVI.png" />
+	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img style="margin-left: 35px" src = "https://i.imgur.com/e92kCcO.png" />
     </div>
 </div>
+<br/>
 
 ### Video
 Here is a quick video of the app classifying a car.
 
-<div style="display:grid; 
+<br/>
+<div align="center" style="display:grid; 
             justify-content: center;
             padding:15px 0 30px 0">
     <div>
         <img src = "https://i.imgur.com/nhngX9C.png" />
     </div>
 </div>
+<br/>
 
 There you go, now you have a good understanding of how to use the app and how a user interacts with the app. 
 
@@ -350,10 +377,12 @@ In this **size** can be either *sequence* or *int*.  If the size is a sequence l
 <br/>
 
 ### Change the hyperparameters
-jniounion
 
-<div style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
+hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
 
+<br/>
+<div align="center" style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
+	
 | DenseNet161| Testing Accuracy| Training Accuracy|
 |:------------:|:----------------:|:------------:|
 |**10 Epochs** | 63.1%|    99%    |
@@ -361,15 +390,18 @@ jniounion
 |**20 Epochs** |     64%    |   99.1%      |
 |**10 Epochs lr 0.002**|  64%    |     99.1%     |
 |**20 Epochs lr 0.002** |   64%  |   99.1%     |
-
 </div>
+<br/>
 
-hihiohiohoi
+hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
 <br/>
 
 ### Layer Freezing - DenseNet
-bububu
-<div style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
+
+hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
+
+<br/>
+<div align="center" style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
 
 | | Testing Accuracy| Training Accuracy|
 |:------------:|:----------------:|:------------:|
@@ -378,6 +410,7 @@ bububu
 |**4 Layer Freezing** |   57.19%    |   98.22%      |
 
 </div>
+<br/>
 
 huhiuih
 <br/>
@@ -391,9 +424,9 @@ huhiuih
 **We used two strategies to do image augmentation**
 
 #### First Strategy
-The first strategy we used is to change the background for some of the car images in our training dataset that are with a white background. Below you see the code for changing the background. It takes 3 parameters, one is the src path, and one is the background src path. It will then combine the two images and produce a new image and store it in the destination path.
+The first strategy we used is to change the background for some of the car images in our training dataset that had white backgrounds. We did this to add some noise to the images so the model will be able to better generalize. Below you see the code for changing the background. It takes 3 parameters, one is the src path, and one is the background src path. It will then combine the two images and produce a new image and store it in the destination path.
 
-We were expecting this will help increasing the performance of the model, but it actually hurt the performance. The reason could be that the background we added is giving too much noises, and so that it is harder for the model to learn.
+We were expecting this will help increasing the performance of the model, but it actually hurt the performance. We assume that this could be the result of the background we added which is adding too much noise. This in turn is making it harder for the model to learn and generalize.
 
 ```python
 # Function to change the background
@@ -432,9 +465,10 @@ def changeImgBg(srcPath:str, bgSrcPath:str, destPath=""):
 
 #### Second Strategy
 
-The second strategy we used is to split the car images to left and right pieces, and we hypothesised this will potentially increase the dataset size.
+The second strategy we used is to split the car images to left and right pieces. We did to make the model more general and realized more or less simulate the images taken with a phone camera. Most of time, when we take a picture using our phone camera we cannot get the entire image of the car. So spliting the images into pieces we assumed would help the model generalize and not rely too much on what the entire car data available in the image.
 
-This method is so good because we kept the original data which is the original car image, and we also split the image and then add them to our dataset. This method will help adding more features for the car we are classifying, and it did increase the performance of the model. For any pretrained models we mentioned earlier, using this dataset will increase the testing accuracy for at least 2~3%.
+This method in the end did increase the performance of the model just as we had hoped. For any pretrained models we mentioned earlier, using this image augmentation will increase the testing accuracy at least 2~3%.
+
 ```python
 # Function to slice the image to half
 def sliceImg(srcPath:str, leftPath="", rightPath=""):
@@ -461,9 +495,11 @@ def sliceImg(srcPath:str, leftPath="", rightPath=""):
 <br/>
 
 ### Add more classes to the training dataset
-- We also tried to add more car models to the training dataset. The model with more classes did not improve the performance. For now we will just stick with 23 car classes as we really have a good performance for the current models we have.
-- Initially we had 23 car classes, and then we added more car images to our dataset and increased the number of car classes to 40. The performance of the model did get hurt, and the testing accuracy dropped about 10%.
-- Right now for a better user experiecne we decided to only keep the number of models to 23. For the future, we are thinking to added app features to help us retrain the model and then increase the number of car models. You can read more in the future outlook session.
+One thing we tired at the behest our professor was to add more car models to the training dataset. The new trained model with more classes did not have much improvement in accuracy.
+
+Initially we had 23 car classes, and then we added more car images to our dataset and increased the number of car classes to 40. The performance of the model did get hurt, and the testing accuracy dropped about 10%.
+
+Right now for a better user experiecne we decided to only keep the number of models to 23. For the future, we are thinking of added app features to help us retrain the model and then increase the number of car models at gradual pace. You can read more in the [future outlook session](###App-Development).
 <br/>
 
 
