@@ -181,6 +181,7 @@ Here is a quick video of the app classifying a car.
 There you go, now you have a good understanding of how to use the app and how a user interacts with the app. 
 
 **Enjoy and have fun classifying cars!**
+
 <br/>
 
 ## Code organization
@@ -209,16 +210,20 @@ There you go, now you have a good understanding of how to use the app and how a 
   - `Model-Notebook-Code/Testing/`
       - `Model_Testing_code.ipynb` : This is the testing notebook for the any model other than an ensemble model. (*Ex : DenseNet, ....*)
       - `Ensemble_Model_Testing_code.ipynb` : This is the testing notebook for the ensemble model. 
+     
 <br/>
 
 ## Requirements
 - To run the flutter app you need to have flutter installed. Please refer to the [documentation](https://docs.flutter.dev/get-started/install) for this information.
 - Training the model does require the use of a GPU otherwise the training time could be over 8 hours. We used [Kaggle](https://www.kaggle.com) to train our models and used [Google Colaboratory](https://colab.research.google.com) for testing the model. With Kaggle it is possible to schedule a notebook run that will run the notebook in the background without user input.
 - Lastly, for the app to work you would need to connect the app to your respective firestore account. The information for which could be found [here](https://firebase.google.com/docs/flutter/setup?platform=ios).
+
 <br/>
 
 ## App Compatibility Support
 Currently, the app only works on Android devices. So to run the app one would require either a physical android device or an android simulator.
+
+<br/>
 
 ## Machine Learning Dataset Description
 ### Training Dataset
@@ -293,30 +298,29 @@ The each of these values represent what the image shows
 
 ## Machine Learning Model Design and Experimental Performance
 
-
-
 After, we realized DenseNet161 accuracy was not improving we decided it was time to try a different approach to improvement. We decided that we need to test various different parameters and see how they do to get a sense of how well each of them could do. These different strategies we attempted were :
-1. [Different pre-trained models](###Different-pre-trained-models)
-2. [Change the hyperparameters](###Change-the-hyperparameters)
-3. [Freezing the layers](###Freezing-the-layers)
-4. [Image Augmentation](###Image-Augmentation)
-5. [Add more classes to the training dataset](###Add-more-classes-to-the-training-dataset)
-6. [Change the fully connect layer](###Change-the-fully-connect-layer)
-7. [Ensemble Learning](###Ensemble-Learning)
+1. [Different pre-trained models](#Different-pre-trained-models)
+2. [Change the hyperparameters](#Change-the-hyperparameters)
+3. [Freezing the layers](#Freezing-the-layers)
+4. [Image Augmentation](#Image-Augmentation)
+5. [Add more classes to the training dataset](#Add-more-classes-to-the-training-dataset)
+6. [Change the fully connect layer](#Change-the-fully-connect-layer)
+7. [Ensemble Learning](#Ensemble-Learning)
+
 <br/>
 
 ### Different pre-trained models
 
 One of the first things we tried was different pre-trained models like ResNet, RegNet_y_3_2gf, RegNet_y_8gf,. Inception, MobileNet_v3_large, and GoogleNet in place of DenseNet which we have been using. We wanted to see if using a different pre-trained model will produce a better result. This could possibly mean we can go down a different road and see how to improve the accuracy and build a better model. After training the each of the pre-trained model and testing them we got the following testing accuracy result.
-<br/>
 
-## 56.17% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62.33% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 59.67%
-MobileNet &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Inception V3 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GoogLeNet
-
-## 58.56% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64.04% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64.72%
-ResNet50 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RegNet_y_8gf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RegNet_y_3_2gf
-
-<br/>
+```
+MobileNet : 56.17%
+Inception V3 : 62.33%
+GoogLeNet : 59.67%
+ResNet50 : 58.56%
+RegNet_y_8gf : 64.04%
+RegNet_y_3_2gf : 64.72%
+```
 
 After looking at the each of testing accuracy results of the pre-trained models we noticed that both RegNet_y_8gf and RegNet_y_3_3gf did outperform the DenseNet161 by over 2%. This provided the first indication that maybe DenseNet was not a good choice and RegNet models could prove to be more better at this type of classification.
 
@@ -329,12 +333,11 @@ transforms.Resize(256)
 transforms.CenterCrop(224)
 ```
 But, when testing the models accuracy on the test dataset we only added the ``Resize`` transformation. But, we decided to add the ``CenterCrop`` transformation to see what would happend. And interestingly we noticed our results increased. In fact, it increased the accuracy of the RegNet models by 2% to the following.
-<br/>
 
-## 66.44% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 66.10%
-RegNet_y_8gf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RegNet_y_3_2gf
-
-<br/>
+```
+RegNet_y_8gf : 66.44%
+RegNet_y_3_2gf : 66.10%
+```
 
 Unfortunately, although the addition of the ``CenterCrop`` transformation did improve the accuracy. There was no way to do this in flutter since, the 'pytorch_mobile' only allowed for `Resize` transformation and not any kind of `CenterCrop` transformation.
 
@@ -352,6 +355,7 @@ Just a quick side note about PyTorch Transforms Documentation.
 </div>
 
 In this **size** can be either *sequence* or *int*.  If the size is a sequence like (h, w), output side will be matched to this. If size is an int, smaller edge of the image will be matched to this number. i.e, if height > width, then image will be rescaled to `(size * (height / width), size)`.
+
 <br/>
 
 ### Change the hyperparameters
@@ -372,6 +376,7 @@ hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbes
 <br/>
 
 hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
+
 <br/>
 
 ### Layer Freezing - DenseNet
@@ -391,6 +396,7 @@ hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbes
 <br/>
 
 huhiuih
+
 <br/>
 
 ### Layer Freezing - RegNet
@@ -478,6 +484,7 @@ One thing we tired at the behest our professor was to add more car models to the
 Initially we had 23 car classes, and then we added more car images to our dataset and increased the number of car classes to 40. The performance of the model did get hurt, and the testing accuracy dropped about 10%.
 
 Right now for a better user experiecne we decided to only keep the number of models to 23. For the future, we are thinking of added app features to help us retrain the model and then increase the number of car models at gradual pace. You can read more in the [future outlook session](###App-Development).
+
 <br/>
 
 
@@ -499,12 +506,12 @@ model.fc = nn.Sequential(
 )
 ```
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 20 epochs we got the following results.
-<br/>
 
-## 70.55% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.21% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69.86%
-Image Size : 263 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 288 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 272
-
-<br/>
+```
+70.55% : Image Size - 263
+70.21% : Image Size - 288
+69.86% : Image Size - 272
+```
 
 From this we noticed that our accuracy increased by over 6%. This was quite a significant improvement hence, we decided to play around with the fully connected layer even more to observe the changes.
 
@@ -522,12 +529,12 @@ model.fc = nn.Sequential(
 )
 ```
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 25 epochs we got the following results.
-<br/>
 
-## 68.49% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;66.44% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;65.75%
-Image Size : 275 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 256 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 260
-
-<br/>
+```
+68.49% : Image Size - 275
+66.44% : Image Size - 256
+65.75% : Image Size - 260
+```
 
 From this we noticed that our accuracy decreasd by 2% from the previous attempt. This was bad. Initially our assumption was that we trained this model for 25 epochs instead of 20. This was a rather a stupid assumption but we assumed maybe it was overfitting. But, even after training on 20 epochs the accuracy did not improve nor did it come close. After this we decided that maybe going half was not the right choice and that we were wrong to assume that the accuracy was going to improve.
 
@@ -544,41 +551,36 @@ model.fc = nn.Sequential(
 After, training the RegNet_y_3_2gf using this new fully connected layer architecture and 20 epochs we got the following results.
 <br/>
 
-## 70.89% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.55% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70.21%
-Image Size : 288 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 284 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Image Size : 262
-
-<br/>
+```
+70.89% : Image Size - 288
+70.55% : Image Size - 284
+70.21% : Image Size - 262
+```
 
 With this new change in the fully connected layer architecture our accuracy increased 0.34%. Althought, this accuracy was not really that significant we figured out approach was going in the right direction.
 
 So, we doubled down and decided to train the model for 25 epochs and well got the following result.
 
-<br/>
-<div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
-	<div>
-		<h2 style="text-align: center">71.23%</h2>
-        <p style="color:grey">Image size : 256<p>
-    </div>
-</div>
-<br/>
+```
+71.23% : Image Size - 256
+```
 
 Our accuracy increased by close to 0.70% from the base line. A rather good improvement but still we had a long way for improvement.
 
 Taking a look at the categorical breakdown on the testing dataset as to how the model performed on individual categories we described in the [testing dataset](###Testing-Dataset) section, we got the following results.
-<br/>
 
-## 68.89% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;82.35% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;86.67%
-Classic Cars &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Far &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Back & Side
-
-## 68.42% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;77.32% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67.14%
-Side &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Front & Side &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Front
-
-## 59.65% 
-Back 
-
-<br/>
+```
+Classic Cars : 68.89%
+Far : 82.35%
+Back & Side : 86.67%
+Side : 68.42%
+Front & Side : 77.32%
+Front : 67.14%
+Back : 59.65%
+```
 
 Looking at the categorical breakdown results, we see that this model performs best when the car is far in the image or the back & side of the car is shown in the image. In terms of classic cars the accuracy is not that great which is a bit disappointing as the main purpose of the app is to recognize super unqiue cars. Overall this is a good model with a good accuracies across each category.
+
 <br/>
 
 
@@ -627,86 +629,38 @@ After, building the model and training the model for 25 epochs with different le
 **Learning rate 0.007**
 
 Testing Accuracy
-<div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
-	<div>
-		<h2 style="text-align: center">72.26%</h2>
-        <p style="color:grey">Image size : 288<p>
-    </div>
-</div>
+```
+72.26% : Image Size - 288
+```
 
 Categorical Breakdown
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>73.33%</h2>
-        <p style="color:grey">Classic Cars<p>
-    </div>
-    <div>
-		<h2>94.12%</h2>
-        <p style="color:grey">Far<p>
-    </div>
-    <div>
-		<h2>86.67%</h2>
-        <p style="color:grey">Back & Side<p>
-    </div>
-    <div>
-		<h2>73.68%</h2>
-        <p style="color:grey">Side<p>
-    </div>
-    <div>
-		<h2>76.29%</h2>
-        <p style="color:grey">Front & Side<p>
-    </div>
-    <div>
-		<h2>67.14%</h2>
-        <p style="color:grey">Front<p>
-    </div>
-    <div>
-		<h2>63.16%</h2>
-        <p style="color:grey">Back<p>
-    </div>
-</div>
+```
+Classic Cars : 73.33%
+Far : 94.12%
+Back & Side : 86.67%
+Side : 73.68%
+Front & Side : 76.29%
+Front : 67.14%
+Back : 63.16%
+```
 
 **Learning rate 0.01**
 
 Testing Accuracy
-<div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
-	<div>
-		<h2 style="text-align: center">72.95%</h2>
-        <p style="color:grey">Image size : 271<p>
-    </div>
-</div>
+```
+72.95% : Image Size - 271
+```
 
 Categorical Breakdown
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>73.33%</h2>
-        <p style="color:grey">Classic Cars<p>
-    </div>
-    <div>
-		<h2>88.24%</h2>
-        <p style="color:grey">Far<p>
-    </div>
-    <div>
-		<h2>86.67%</h2>
-        <p style="color:grey">Back & Side<p>
-    </div>
-    <div>
-		<h2>71.05%</h2>
-        <p style="color:grey">Side<p>
-    </div>
-    <div>
-		<h2>76.29%</h2>
-        <p style="color:grey">Front & Side<p>
-    </div>
-    <div>
-		<h2>67.14%</h2>
-        <p style="color:grey">Front<p>
-    </div>
-    <div>
-		<h2>68.42%</h2>
-        <p style="color:grey">Back<p>
-    </div>
-</div>
+```
+Classic Cars : 73.33%
+Far : 88.24%
+Back & Side : 86.67%
+Side : 71.05%
+Front & Side : 76.29%
+Front : 67.14%
+Back : 68.42%
+```
 
 From this, we can conclude two things. Firstly, have a learning rate of 0.01 produces a better result than one with a learning rate of 0.007. In addition, ensemble learning does work. For both the models we increased our accuracy by over 1%. Enspecially the model with learning rate of 0.01 the accuracy increased by over 1.5%. 
 
@@ -753,86 +707,38 @@ After, building the model and training the model for 25 epochs with different le
 **Learning rate 0.007**
 
 Testing Accuracy
-<div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
-	<div>
-		<h2 style="text-align: center">71.92%</h2>
-        <p style="color:grey">Image size : 285<p>
-    </div>
-</div>
+```
+71.92% : Image Size - 285
+```
 
 Categorical Breakdown
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>75.56%</h2>
-        <p style="color:grey">Classic Cars<p>
-    </div>
-    <div>
-		<h2>100.0%</h2>
-        <p style="color:grey">Far<p>
-    </div>
-    <div>
-		<h2>83.33%</h2>
-        <p style="color:grey">Back & Side<p>
-    </div>
-    <div>
-		<h2>73.68%</h2>
-        <p style="color:grey">Side<p>
-    </div>
-    <div>
-		<h2>78.35%</h2>
-        <p style="color:grey">Front & Side<p>
-    </div>
-    <div>
-		<h2>64.29%</h2>
-        <p style="color:grey">Front<p>
-    </div>
-    <div>
-		<h2>63.16%</h2>
-        <p style="color:grey">Back<p>
-    </div>
-</div>
+```
+Classic Cars : 75.56%
+Far : 94.12%
+Back & Side : 83.33%
+Side : 73.68%
+Front & Side : 77.32%
+Front : 65.714%
+Back : 63.16%
+```
 
 **Learning rate 0.01**
 
 Testing Accuracy
-<div style="display: grid; justify-content:center; margin-bottom:4.5%; row-gap:1.5%">
-	<div>
-		<h2 style="text-align: center">72.60%</h2>
-        <p style="color:grey">Image size : 265<p>
-    </div>
-</div>
+```
+72.60% : Image Size - 265
+```
 
 Categorical Breakdown
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>73.33%</h2>
-        <p style="color:grey">Classic Cars<p>
-    </div>
-    <div>
-		<h2>88.24%</h2>
-        <p style="color:grey">Far<p>
-    </div>
-    <div>
-		<h2>90.00%</h2>
-        <p style="color:grey">Back & Side<p>
-    </div>
-    <div>
-		<h2>71.05%</h2>
-        <p style="color:grey">Side<p>
-    </div>
-    <div>
-		<h2>77.32%</h2>
-        <p style="color:grey">Front & Side<p>
-    </div>
-    <div>
-		<h2>67.14%</h2>
-        <p style="color:grey">Front<p>
-    </div>
-    <div>
-		<h2>63.16%</h2>
-        <p style="color:grey">Back<p>
-    </div>
-</div>
+```
+Classic Cars : 73.33%
+Far : 88.24%
+Back & Side : 90.00%
+Side : 71.05%
+Front & Side : 77.32%
+Front : 67.14%
+Back : 63.16%
+```
 
 After this experiment we noticed that out overall accuracy went down just slightly by 0.35%. But taking a closer look at the categorical breakdown results of themodel with a learning rate of 0.01 a different conclusion could be made. 
 
@@ -901,45 +807,29 @@ Testing Accuracy
         <p style="color:grey">Image size : 242<p>
     </div>
 </div>
+```
+72.26% : Image Size - 242
+```
 
 Categorical Breakdown
-<div style="display: grid; grid-template-columns: repeat(3, 31%); margin-bottom:4.5%; column-gap:3.5%; row-gap:1.5%">
-	<div>
-		<h2>73.33%</h2>
-        <p style="color:grey">Classic Cars<p>
-    </div>
-    <div>
-		<h2>88.24%</h2>
-        <p style="color:grey">Far<p>
-    </div>
-    <div>
-		<h2>90.00%</h2>
-        <p style="color:grey">Back & Side<p>
-    </div>
-    <div>
-		<h2>71.05%</h2>
-        <p style="color:grey">Side<p>
-    </div>
-    <div>
-		<h2>77.32%</h2>
-        <p style="color:grey">Front & Side<p>
-    </div>
-    <div>
-		<h2>67.14%</h2>
-        <p style="color:grey">Front<p>
-    </div>
-    <div>
-		<h2>61.40%</h2>
-        <p style="color:grey">Back<p>
-    </div>
-</div>
+```
+Classic Cars : 73.33%
+Far : 88.24%
+Back & Side : 90.00%
+Side : 71.05%
+Front & Side : 77.32%
+Front : 67.14%
+Back : 61.40%
+```
 
 After this experiment we noticed that our overall accuracy went down just slightly by 0.70%. In terms of the categorical breakdown the accuracies remained consistent compared to the previous models. There was nothing too distinct or attracted attention in this experiment. We were pretty disappointed that this approach did not produce a better result and we had high hopes this might yield fruit.
 <br/>
 
 #### Conclusion 
 In conclusion, we think ensemble modeling has a lot of potential for improvement and testing. We think, with more time this approach could have proved to be valuable and provided us with great results.
+
 <br/>
+
 
 ## Running the flutter app
 **YOU MUST HAVE FLUTTER INSTALLED AND FIREBASE CONNECTED BEFORE RUNNING THE APP!**
@@ -968,6 +858,7 @@ flutter run
 ==To run the app on an android simulator one must first create an Android Virtual Device. This step is important because we will be using an emulator and each instance of the Android Emulator uses an Android Virtual Device. To create an Android Virtual Device, we must first launch android studios and open device manager, this will allow us to create our device by selecting a certain Hardware (It does not matter which one you choose but it is recommended to choose a more recent Hardware) Our Next step is to choose a Hardware profile this could be one of the given profiles or you can create/import a hardware profile. Our final step is to select a system image for a particular API level. (It is recommended to choose an API from the recommended tab since they will most likely run the best).==
 
 ==Once we have our Android Virtual Device, we can start the Android Emulator and run the app. To select the Android Virtual Device you want, go to the toolbar and select the specific Android Virtual Device. Then click run, it may take a couple of minutes to boot up. Once downloaded it will be on the device like any other physical device.==
+
 <br/>
 
 ## Instructions on Training The Model
@@ -1070,6 +961,7 @@ def TrainModel(model, lossFun, optimizer, scheduler, n_epochs=5):
     print('Training Finished')
     return model, losses, accuracies
 ```
+
 <br/>
 
 ## Instructions on Testing The Model
@@ -1125,8 +1017,6 @@ print("The best accuracy is " + str(round(HighestAccuracy, 2)) +
 The best accuracy is 70.33% and the image size is 225
 ```
 
-
-
 Finally, you can run the rest of the code blocks and get a more detailed insight into how the model performed in each category for the image size with the best accuracy as described in the [testing dataset description](###Testing-Dataset).
 
 After running the entire notebook you should see an output like what is shown velow with each category and its accuracy, correct and incorrect count.
@@ -1139,6 +1029,7 @@ back : 64.91%             - correct 37   incorrect 20
 back-side : 86.67%        - correct 26   incorrect 4
 far : 88.24%              - correct 15   incorrect 2
 ```
+
 <br/>
 
 ## What We Learned
@@ -1147,6 +1038,7 @@ One of the biggest things we learned was about the software development cycle (a
 Another lesson we have learned is to understand how to debug. Considering this project was something all of us experienced for the first time, we naturally ran into a lot of bugs which we did not understand. And so, one of the things we picked upon is how to debug properly and look for clues that can help lead to the solutions by understanding the errors and behavior of the code.
 
 Lastly, we have learned how to work with a machine learning models and a mobile application. In this project, we made use of a database and a machine learning model along with a mobile application which is something we as a team have not experienced in the past. So this was an entirely new experience for all of us. In the beginning it was hard but over time we all got used to it and we think right now we all have a really good fundamental grasp of how to build software's that has an ML component as part of it.
+
 <br/>
 
 ## Challenges Faced
@@ -1163,6 +1055,7 @@ During the initial stages of the project, our plan was to host the PyTorch model
 Our new strategy was to directly embed the model into the flutter app using the `tflite: ^1.1.2` flutter package (found [here](https://pub.dev/packages/tflite)). But this also had a flaw. Using the `tflite` flutter package meant that we can no longer resize the images to our specification, and normalize the image using mean and standard deviation. To do this we wrote a function which applied the resizing and normalized the image. But the main problem was that flutter reads image data as `INT` instead of `FLOAT` which is what we want it to be. We want `FLOAT` because our original model was trained to accept images to have `FLOAT` values for the image data. If we suddenly change it to `INT` we will lose valuable information and the model might not be able to classify correctly.
 
 Our solution was to use the `pytorch_mobile` flutter package (found [here](https://pub.dev/packages/pytorch_mobile)) and use the original PyTorch model without ONNX conversion. This worked out great and had everything we were looking for. The only thing was we needed to save the model using `.jit.trace` which you can read more about how to use [here](####Create-model-for-the-app).
+
 <br/>
 
 ## Future Work 
@@ -1188,6 +1081,7 @@ In terms of usability we will need to fix the fact the app is currently only wor
 ### Testing
 1. One thing we need to do before developing this into a consumer-grade product in terms of testing is to run more tests on the ML model and also experiment with different training datasets. We saw that splitting the original training dataset into a left and right piece increased the accuracy significant over +10%. So, who is to say that it is not possible to push it further. Hence, we need to perform more testing to see what could be achieved.
 2. Another thing we could do in terms of testing is to analyze what the best model we trained learned by looking at the visualization of weights in the convolutional layer after training. We tried to do this but failed to get it to work. But with more time, spending some time looking at the visualization will get help us better understand how the model learns and where it needs improvement.  
+
 <br/>
 
 ## Theoretical Roadmap
@@ -1196,6 +1090,7 @@ This is a theoretical roadmap for the future direction of this app if we were to
 2. Perform more experiments and improvements based on user feedback
 3. Add more car models for classification
 4. Adapt the final model for other use cases such as car seller verification in the form of an API
+
 <br/>
 
 ## Resources
@@ -1211,6 +1106,7 @@ This is a theoretical roadmap for the future direction of this app if we were to
 - [DVM Dataset](https://deepvisualmarketing.github.io/)
 - [Car Connection Picture Dataset](https://www.kaggle.com/datasets/prondeau/the-car-connection-picture-dataset)
 - [Google Image Downloader code](https://github.com/Joeclinton1/google-images-download)
+
 <br/>
 
 ## The Team
