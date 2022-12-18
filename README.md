@@ -1,4 +1,6 @@
-# CarMe
+<div align="center">
+	<h1>CarMe</h1>
+</div>
 
 <br/>
 <div align="center" style="display:grid; 
