@@ -165,19 +165,6 @@ Once, the user signs into their respective account, the above page will also hav
 </div>
 <br/>
 
-### Video
-Here is a quick video of the app classifying a car.
-
-<br/>
-<div align="center" style="display:grid; 
-            justify-content: center;
-            padding:15px 0 30px 0">
-    <div>
-        <img src = "https://i.imgur.com/nhngX9C.png" />
-    </div>
-</div>
-<br/>
-
 There you go, now you have a good understanding of how to use the app and how a user interacts with the app. 
 
 **Enjoy and have fun classifying cars!**
