@@ -1253,62 +1253,27 @@ In terms of usability we will need to fix the fact the app is currently only wor
 <br/>
 
 ## Theoretical Roadmap
-This is a theoretical roadmap for the future direction of this app if we were to develop this into a fully functioning consumer-grade product.
+**This is a theoretical roadmap for the future direction of this app if we were to develop this into a fully functioning consumer-grade product.**
 
 <div style="width:100%; height:480px">
     <div style="position: absolute; width:100%; height:400px">
-        <div style="position: absolute; width:100%;display: grid; grid-template-columns:49.8% 0.4% 49.8%">
-            <div style="width:100%">
-                <p style="color: white">
-                    dd
-                </p>
-            </div>
-            <div style="width:100%;height:480px;background-color: #DCDCDC">
-                <p style="font-size:0.1em;color: #DCDCDC">
-                    dd
-                </p>
-            </div>
-            <div style="width:100%">
-                <p style="color: white">
-                    dd
-                </p>
-            </div>
-        </div>
          <div style="position: absolute; width:100%; display: grid; grid-template-columns: 49% 2% 49%; height: 100px">
             <div style="padding: 0% 5%">
                 <h5>
                     1
                 </h5>
                 <p>
-                    Release the app in the App Store and Play Store for beta testing
-                </p>
-            </div>
-            <div style="display: grid; height:100px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="color: white;">
-                <p>
-                    R
+                    The first thing we want to do is Release the app in to the App store and Play store for beta testing. As mentioned earlier, we are currenly experiencing with a camera issue, and we will fix that first to release it to the apply app store. After we fixed all the issues, people with both android and apple devices should be able to use our app.
                 </p>
             </div>
         </div>
         <div style="margin-top:100px;position: absolute; width:100%; display: grid; grid-template-columns:49% 2% 49%; height: 100px">
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-            <div style="display: grid; height:110px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
             <div style="padding: 0% 5%">
                 <h5>
                     2
                 </h5>
                 <p>
-                    Perform more experiments and improvements based on user feedback
+                    Perform more experiments and improvements based on user feedback. This will include adding more features for user to send feedbacks. For example, we are thinking to add a featrue to let user send a feedback to indicate if the classification is correct or not, and for each prediction, we will store the image to our server. (Of course we need a server first, which we are also thinking to move our model to a server and make a public api for prediction)
                 </p>
             </div>
         </div>
@@ -1318,35 +1283,17 @@ This is a theoretical roadmap for the future direction of this app if we were to
                     3
                 </h5>
                 <p>
-                    Add more car models for classification
-                </p>
-            </div>
-            <div style="display: grid; height:100px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
-            <div style="color: white;">
-                <p>
-                    R
+                    Add more car models for classification. This can refer to point 2 when we added more features in our app. Users can also upload data(car images) for the model that we currenly don't have in our database. And we will retrain the model for a period of time. We will also add more car models from our Stanford & DVM car dataset. All of these will eventually help us improve the user experience and the performance of the model.
                 </p>
             </div>
         </div>
         <div style="margin-top:320px;position: absolute; width:100%; display: grid; grid-template-columns:49% 2% 49%; height: 100px">
-            <div style="color: white;">
-                <p>
-                    R
-                </p>
-            </div>
-            <div style="display: grid; height:110px; justify-content:center; align-items:center">
-            	<div style="width:15px; height:15px; background-color: #DCDCDC; border-radius: 50px">
-                </div>
-            </div>
             <div style="padding: 0% 5%">
                 <h5>
                     4
                 </h5>
                 <p>
-                    Adapt the final model for other use cases such as car seller verification in the form of an API
+                    Adapt the final model for other use cases such as car seller verification in the form of an API.
                 </p>
             </div>
         </div>
