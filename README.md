@@ -285,7 +285,7 @@ The each of these values represent what the image shows
 
 ## Machine Learning Model Design and Experimental Performance
 
-After, we realized DenseNet161 accuracy was not improving we decided it was time to try a different approach to improvement. We decided that we need to test various different parameters and see how they do to get a sense of how well each of them could do. These different strategies we attempted were :
+After, we realized DenseNet161 accuracy was not improving after some experiments we decided it was time to try a different approach to improvement. We decided that we need to test various different parameters and see how they do to get a sense of how well each of them could do. These different strategies we attempted were :
 1. [Different pre-trained models](#Different-pre-trained-models)
 2. [Change the hyperparameters](#Change-the-hyperparameters)
 3. [Freezing the layers](#Freezing-the-layers)
@@ -347,8 +347,6 @@ In this **size** can be either *sequence* or *int*.  If the size is a sequence l
 
 ### Change the hyperparameters
 
-hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
-
 <br/>
 <div align="center" style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
 	
@@ -362,8 +360,11 @@ hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbes
 </div>
 <br/>
 
-hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
+For the pretrained DenseNet161 Model we have tested epoch values of 10, 15, 20, 25, 30 but have reached the best accuracy when modifying the number of epochs to 20 epochs. After the epoch value of 20 we did have any increase in testing accuracy, it just led to a longer training time, due to this the table only includes up to value of epoch 20. 
 
+We also tested different learning rates for the DenseNet161 model, we have found that experimenting with these learning rates has given us the same best model accuracy, but needs less epochs to reach that accuracy. We can see that the learning rate of .002 for 10 and 20 epochs has given us the same results, since the model reaches best accuracy by epoch 7. 
+
+We can conclude when it comes to testing learning rate vs epoch we can not increase the resulting accuracy of the model past the inital best of 20 epoch. This being said when testing machine learning models there may be a certain ratio between learning rate and epoch to slightly increase the accuracy but from our testing we could not find this said ratio.
 <br/>
 
 ### Layer Freezing - DenseNet
@@ -1031,7 +1032,7 @@ Lastly, we have learned how to work with a machine learning models and a mobile 
 ## Challenges Faced
 
 #### Good Performance Metric
-One key challenge we faced was to come up with a good performance metric. This required us to obtain a representative testing dataset. Since the image that the machine learning model classifies is taken by the user in real-time, we needed a testing dataset of real car images that the users might take. In order to obtain such a meaningful testing dataset, we used our phones to take images of cars that we see on the streets at different angles. In addition, we made use a search engine and downloaded some images to obtained a representative testing dataset of **800** real car images. Once, we found the images, we labelled them in specific fashion to understand how the model performed on the specific types of a images. Such as, one with the car really far, or only the front side of the car being shown. These things were meant to help us understand what needed to be fixed and in which areas the model lagged behind.
+One key challenge we faced was to come up with a good performance metric. This required us to obtain a representative testing dataset. Since the image that the machine learning model classifies is taken by the user in real-time, we needed a testing dataset of real car images that the users might take. In order to obtain such a meaningful testing dataset, we used our phones to take images of cars that we see on the streets at different angles. In addition, we made use a search engine and downloaded some images to obtained a representative testing dataset of 300 car images. Once, we found the images, we labelled them in specific fashion to understand how the model performed on the specific types of a images. Such as, one with the car really far, or only the front side of the car being shown. These things were meant to help us understand what needed to be fixed and in which areas the model lagged behind.
 
 #### Increase model accuracy
 Another challenge we faced was trying to increase the accuracy of our image classification models. It was difficult to figure out which approach would help increase the accuracy of the model so we ended up trying many different experiments to see which one would produce the best accuracy.
