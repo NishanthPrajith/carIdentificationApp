@@ -367,9 +367,10 @@ We also tested different learning rates for the DenseNet161 model, we have found
 We can conclude when it comes to testing learning rate vs epoch we can not increase the resulting accuracy of the model past the inital best of 20 epoch. This being said when testing machine learning models there may be a certain ratio between learning rate and epoch to slightly increase the accuracy but from our testing we could not find this said ratio.
 <br/>
 
-### Layer Freezing - DenseNet
+### Layer Freezing
+Layer Freezing controls the way the weights are updated. We applied layer freezing on the DenseNet and RegNet models.
 
-hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbesdfiucbewiubfiuwbeiufbiubeiu
+We first tried layer freezing on the DenseNet models by freezing the first few layers in each of the dense blocks. Based on the resutls, the testing accuracy decreased slightly as more layers were frozen while the training accuracy stayed roughly the same.
 
 <br/>
 <div align="center" style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
@@ -383,11 +384,21 @@ hihiohiohoiubifwpprbubiufbwuebfubwuifbeuuf4beuibwiuebfiucbewiufbiuwebdiucbiuwbes
 </div>
 <br/>
 
-huhiuih
+We then tried layer freezing on the RegNet models by freezing the first few layers in each block. We obtained similar results where the testing accuracy decreased slightly.
 
-<br/>
+<div align="center" style="display: grid; margin-top: 5%; margin-bottom:2%; justify-content: center">
 
-### Layer Freezing - RegNet
+| | Testing Accuracy| Training Accuracy|
+|:------------:|:----------------:|:------------:|
+|**No Layer Freezing** | 66.44%|    98.24%    |
+|**2 Layer Freezing** |    64.38%   |  97.75%    |
+|**5 Layer Freezing** |   63.69%    |   97.97%      |
+|**8 Layer Freezing** | 63.01%|    97%    |
+|**12 Layer Freezing** |    59.59%   |  97%    |
+
+</div>
+
+From the above results, we can conclude that layer freezing does not help increase the accuracy of the models.
 
 <br/>
 
