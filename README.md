@@ -193,11 +193,12 @@ There you go, now you have a good understanding of how to use the app and how a 
       - `Pre-Processing_V1.ipynb` : Jupyter notebook which combines the different datasets together and create the final dataset which is used for training of the models
       - `CarImage_PreProcessing.ipynb` : Jupyter notebook which include the OpenCV code that takes a particular image and splits it into its left and right half
   - `Model-Notebook-Code/Training/`
-      - `ensemble-learning-attempt-1-lr01.ipynb` : 
-      - `ensemble-learning-attempt-1-lr007.ipynb` : 
-      - `ensemble-learning-attempt-2-lr01.ipynb` : 
-      - `ensemble-learning-attempt-2-lr007.ipynb` : 
-      - `ensemble-learning-stacking-lr008.ipynb` : 
+      - `fc-attempt-3-training-script-final.ipynb` : Jupyter notebook which was used to train the best model we got after playing around with the FC layer of the RegNet_y_3_2gf pre-trained model. 
+      - `ensemble-learning-attempt-1-lr01.ipynb` : Jupyter notebook which was used to train the ensemble learning model in attempt #1 with a learning rate of 0.01
+      - `ensemble-learning-attempt-1-lr007.ipynb` : Jupyter notebook which was used to train the ensemble learning model in attempt #1 with a learning rate of 0.007
+      - `ensemble-learning-attempt-2-lr01.ipynb` : Jupyter notebook which was used to train the ensemble learning model in attempt #2 with a learning rate of 0.01
+      - `ensemble-learning-attempt-2-lr007.ipynb` : Jupyter notebook which was used to train the ensemble learning model in attempt #2 with a learning rate of 0.007
+      - `ensemble-learning-stacking-lr008.ipynb` : Jupyter notebook which was used to train the stacking ensemble model in our final attempt with enseble learning with a learning rate of 0.008
   - `Model-Notebook-Code/Testing/`
       - `Model_Testing_code.ipynb` : This is the testing notebook for the any model other than an ensemble model. (*Ex : DenseNet, ....*)
       - `Ensemble_Model_Testing_code.ipynb` : This is the testing notebook for the ensemble model. 
