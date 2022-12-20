@@ -193,7 +193,11 @@ There you go, now you have a good understanding of how to use the app and how a 
       - `Pre-Processing_V1.ipynb` : Jupyter notebook which combines the different datasets together and create the final dataset which is used for training of the models
       - `CarImage_PreProcessing.ipynb` : Jupyter notebook which include the OpenCV code that takes a particular image and splits it into its left and right half
   - `Model-Notebook-Code/Training/`
-      - **Model Training Code**
+      - `ensemble-learning-attempt-1-lr01.ipynb` : 
+      - `ensemble-learning-attempt-1-lr007.ipynb` : 
+      - `ensemble-learning-attempt-2-lr01.ipynb` : 
+      - `ensemble-learning-attempt-2-lr007.ipynb` : 
+      - `ensemble-learning-stacking-lr008.ipynb` : 
   - `Model-Notebook-Code/Testing/`
       - `Model_Testing_code.ipynb` : This is the testing notebook for the any model other than an ensemble model. (*Ex : DenseNet, ....*)
       - `Ensemble_Model_Testing_code.ipynb` : This is the testing notebook for the ensemble model. 
