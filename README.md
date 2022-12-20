@@ -285,6 +285,25 @@ The each of these values represent what the image shows
 
 ## Machine Learning Model Design and Experimental Performance
 
+### First model (*Base*) - DenseNet161
+
+Initially, we did not have any clue which model we should choose for this problem. We were thinking `VGG19`, `ResNet152`, and `DenseNet161`. After some research, we realized that VGG19 is probably not a good choice among the 3 because our ML problem is complicated, and the dataset size is pretty large. A deep neural network is probably better for classifying cars. Thus, we were left between `ResNet152` and `DenseNet161` to choose from. Why did we think these two models will perform better?. Well, for a deep neural network, we would encounter a gradient vanishing problem, and stacking more layers will result in worse accuracy. These models skip connections between blocks which in turn helps with training a deep neural network. Even though ResNet and DenseNet has different network structures, the idea behind them is the same. If there is a layer or two in the middle of the network that doesn't do anything, then these shortcuts can also ensure that we don't lose any information from the previous layers, and sometimes even enhance our learning process. In the early stage of our ML improvment, we tested both models on a small testing set. And the accuracy results are:
+
+```
+ResNet152: 61%
+DenseNet161: 62.45%
+```
+
+We can see that DenseNet161 is slightly better, thus we chose this model to be the model used in the app for the early stage.
+
+After this, we ran some more tests with the DenseNet161 and on both the tests we got an accuracy of 
+```
+First test : 62.12%
+Second test : 58.7%
+```
+As, we can see the accuracy decreased considerably. This proved to be a problem since, it seemed like we hit a dead end.
+<br/>
+
 After, we realized DenseNet161 accuracy was not improving after some experiments we decided it was time to try a different approach to improvement. We decided that we need to test various different parameters and see how they do to get a sense of how well each of them could do. These different strategies we attempted were :
 1. [Different pre-trained models](#Different-pre-trained-models)
 2. [Change the hyperparameters](#Change-the-hyperparameters)
